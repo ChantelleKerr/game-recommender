@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "server"
+version = "0.1.0"
+description = "Django Backend"
+authors = ["Chantelle"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.7"
+djangorestframework = "^3.14.0"
+django-cors-headers = "^4.3.0"
+psycopg = "^3.1.12"
+psycopg2-binary = "^2.9.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
