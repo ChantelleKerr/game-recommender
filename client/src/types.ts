@@ -12,4 +12,11 @@ interface Genre {
 interface Platform {
   name: string;
 }
-export type { Game, Genre, Platform };
+
+interface User {
+  id?: number;
+  email?: string;
+  username: string;
+  password?: string;
+}
+export type { Game, Genre, Platform, User };
