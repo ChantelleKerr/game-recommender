@@ -1,13 +1,19 @@
 import GameList from "./components/GameList";
 import NavBar from "components/NavBar";
+import Login from "components/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Signup from "components/Signup";
+import Home from "components/Home";
 function App() {
   return (
-    <>
+    <Router>
       <NavBar />
-      <div className="container mx-auto px-2 sm:px-4 lg:px-6 pt-20">
-        <GameList />
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+      </Routes>
+    </Router>
   );
 }
 

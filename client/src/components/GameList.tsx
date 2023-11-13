@@ -29,7 +29,7 @@ const GameList = () => {
     getGames();
   }, []);
   return (
-    <>
+    <div className="container mx-auto px-2 sm:px-4 lg:px-6 pt-20">
       <h1 className="text-xl text-darkBlue"> Games List</h1>
 
       <ul className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center">
@@ -40,7 +40,7 @@ const GameList = () => {
             </li>
           ))}
       </ul>
-    </>
+    </div>
   );
 };
 
