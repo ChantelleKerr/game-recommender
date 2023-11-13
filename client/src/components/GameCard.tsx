@@ -3,9 +3,12 @@ import { Game, Genre, Platform } from "types";
 import {
   FaPlaystation,
   FaXbox,
-  FaComputer,
+  FaWindows,
   FaHeart,
   FaRegHeart,
+  FaLinux,
+  FaApple,
+  FaAndroid,
 } from "react-icons/fa6";
 import { SiNintendo } from "react-icons/si";
 import { PlatformPath } from "node:path/posix";
@@ -19,14 +22,23 @@ const GameCard = ({ Game }: { Game: Game }) => {
   };
 
   const getPlatformIcon = (platform: String) => {
-    if (platform === "PlayStation") {
-      return <FaPlaystation />;
-    } else if (platform === "Xbox") {
-      return <FaXbox />;
-    } else if (platform === "Nintendo") {
-      return <SiNintendo />;
-    } else if (platform === "PC") {
-      return <FaComputer />;
+    switch (platform) {
+      case "PlayStation":
+        return <FaPlaystation />;
+      case "Xbox":
+        return <FaXbox />;
+      case "Nintendo":
+        return <SiNintendo />;
+      case "PC":
+        return <FaWindows />;
+      case "Apple Macintosh":
+        return <FaApple />;
+      case "Linux":
+        return <FaLinux />;
+      case "Android":
+        return <FaAndroid />;
+      default:
+        return null;
     }
   };
 

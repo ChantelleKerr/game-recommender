@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import GameCard from "./GameCard";
 import { Game } from "types";
 
@@ -30,7 +30,7 @@ const GameList = () => {
   }, []);
   return (
     <>
-      <h1 className="text-3xl text-darkBlue"> Games List</h1>
+      <h1 className="text-xl text-darkBlue"> Games List</h1>
 
       <ul className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center">
         {games &&
