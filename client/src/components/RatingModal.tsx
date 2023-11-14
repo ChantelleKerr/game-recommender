@@ -26,7 +26,7 @@ const RatingModal = ({ setIsModalOpen, setHasRated, Game }: Props) => {
       className="bg-white rounded-xl"
       style={{
         width: 300,
-        height: 340,
+        height: 339,
         display: "grid",
         gridTemplateRows: "auto 1fr auto",
       }}
@@ -39,12 +39,12 @@ const RatingModal = ({ setIsModalOpen, setHasRated, Game }: Props) => {
       </div>
       <div className=" flex flex-col items-center justify-between">
         <div className="flex flex-col items-center">
-          <h1 className="text-2xl text-darkBlue">What is your rating?</h1>
-          <h2 className="text-primary"> {Game.name}</h2>
+          <h1 className="text-2xl text-dark">What is your rating?</h1>
+          <h2 className="text-darkGray"> {Game.name}</h2>
         </div>
         <Rate allowHalf defaultValue={0} onChange={setRating} value={rating} />
         <div className=" flex flex-col items-center gap-2">
-          <label className="text-primary text-xs">
+          <label className="text-darkGray text-xs">
             Which platform did you use?
           </label>
           <Select
@@ -57,14 +57,21 @@ const RatingModal = ({ setIsModalOpen, setHasRated, Game }: Props) => {
             }))}
           />
         </div>
-        <div className="px-4 w-full mb-6">
+        <div className="px-4 w-full mb-6 flex gap-1">
           <Button
             type="primary"
             block
-            className="bg-accent"
+            className="bg-primary text-dark"
             onClick={() => setHasRated(true)}
           >
-            Submit Rating
+            Submit
+          </Button>
+          <Button
+            block
+            className="border-accent text-accent"
+            onClick={() => setHasRated(false)}
+          >
+            Delete
           </Button>
         </div>
       </div>

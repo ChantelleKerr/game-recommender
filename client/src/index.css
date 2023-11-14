@@ -12,8 +12,8 @@
   background: #38a1db;
 }
 
-body {
-  background-color: #c8c9cd;
+:root {
+  background-color: #e6e6e6;
 }
 
 .background-container {

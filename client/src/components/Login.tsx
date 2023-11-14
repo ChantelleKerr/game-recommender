@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AuthService from "../services/auth";
 import { useState } from "react";
 import { User } from "types";
+import { Input, Button } from "antd";
 
 const Login = () => {
   const [userForm, setUserForm] = useState<User>({
@@ -37,7 +38,7 @@ const Login = () => {
       >
         <h2 className="text-4xl text-secondary mb-8">Sign in</h2>
         <div className="my-4">
-          <input
+          <Input
             type="text"
             placeholder="Username"
             name="username"
@@ -46,7 +47,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <input
+          <Input
             type="password"
             placeholder="Password"
             name="password"
@@ -54,9 +55,13 @@ const Login = () => {
             className="input input-bordered w-full max-w-xs"
           />
         </div>
-        <button type="submit" className="btn bg-accent text-darkBlue my-8">
+        <Button
+          htmlType="submit"
+          type="primary"
+          className="bg-primary text-darkBlue my-8"
+        >
           Sign in
-        </button>
+        </Button>
         <span className="text-gray-500 my-8">
           Don't have an account yet?{" "}
           <Link className="text-secondary" to="/signup">

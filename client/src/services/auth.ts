@@ -1,4 +1,4 @@
-import axiosWithoutInterceptor from "./axiosInterceptor";
+import axiosWithoutInterceptor, { axiosInstance } from "./axiosInterceptor";
 import { User } from "types";
 
 class AuthService {
@@ -8,6 +8,9 @@ class AuthService {
 
   signup(userData: any) {
     return axiosWithoutInterceptor.post("/api/user/register/", userData);
+  }
+  signout() {
+    console.log("Logout");
   }
 }
 
