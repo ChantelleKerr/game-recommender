@@ -11,14 +11,15 @@ import {
   FaAndroid,
 } from "react-icons/fa6";
 import { SiNintendo } from "react-icons/si";
-import { PlatformPath } from "node:path/posix";
+import RatingModal from "./RatingModal";
 
 const GameCard = ({ Game }: { Game: Game }) => {
-  const [favourite, setFavourite] = useState(false);
+  const [hasRated, setHasRated] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const updateFavourite = () => {
+  const updateRated = () => {
     // TODO: Store favourite onload
-    setFavourite(!favourite);
+    setIsModalOpen(!isModalOpen);
   };
 
   const getPlatformIcon = (platform: String) => {
@@ -43,15 +44,15 @@ const GameCard = ({ Game }: { Game: Game }) => {
   };
 
   const getHeartIcon = () => {
-    return favourite ? (
+    return hasRated ? (
       <FaHeart
         className="absolute top-2 right-2 text-accent text-4xl"
-        onClick={updateFavourite}
+        onClick={() => setIsModalOpen(!isModalOpen)}
       />
     ) : (
       <FaRegHeart
         className="absolute top-2 right-2 text-accent text-4xl"
-        onClick={updateFavourite}
+        onClick={() => setIsModalOpen(!isModalOpen)}
       />
     );
   };
@@ -66,6 +67,13 @@ const GameCard = ({ Game }: { Game: Game }) => {
         />
         {getHeartIcon()}
       </figure>
+      {isModalOpen && (
+        <RatingModal
+          setIsModalOpen={setIsModalOpen}
+          setHasRated={setHasRated}
+          Game={Game}
+        />
+      )}
       <div className="card-body p-5">
         <h2 className="card-title pb-3 text-secondary">{Game.name}</h2>
         <div className="card-actions justify-end">
@@ -73,6 +81,7 @@ const GameCard = ({ Game }: { Game: Game }) => {
             <span key={index}>{getPlatformIcon(plat.platform.name)}</span>
           ))}
         </div>
+
         <div className="card-actions justify-end">
           {Game.genres.map((genre: Genre) => (
             <div className="badge badge-outline" key={genre.name}>
