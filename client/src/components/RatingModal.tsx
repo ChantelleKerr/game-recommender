@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { RiCloseLine } from "react-icons/ri";
 import { Game, Genre, Platform } from "types";
+import { Rate, Select, Button } from "antd";
 
 type Props = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -8,53 +9,64 @@ type Props = {
   Game: Game;
 };
 const RatingModal = ({ setIsModalOpen, setHasRated, Game }: Props) => {
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState<number>(0);
+  const [platform, setPlatform] = useState<string>("Playstation");
+  const options: any = [
+    "Playstation",
+    "Xbox",
+    "PC",
+    "Nintendo",
+    "Apple Macintosh",
+    "Linux",
+    "Android",
+  ];
+
   return (
-    <div className="bg-white h-full w-full absolute rounded-2xl">
-      <div className="flex justify-end m-5">
-        <RiCloseLine onClick={() => setIsModalOpen(false)} />
+    <div
+      className="bg-white rounded-xl"
+      style={{
+        width: 300,
+        height: 340,
+        display: "grid",
+        gridTemplateRows: "auto 1fr auto",
+      }}
+    >
+      <div className="flex justify-end p-5">
+        <RiCloseLine
+          onClick={() => setIsModalOpen(false)}
+          className="cursor-pointer"
+        />
       </div>
-      <div className=" flex flex-col items-center justify-between h-80">
+      <div className=" flex flex-col items-center justify-between">
         <div className="flex flex-col items-center">
           <h1 className="text-2xl text-darkBlue">What is your rating?</h1>
           <h2 className="text-primary"> {Game.name}</h2>
         </div>
-
-        <div className="rating gap-1 ">
-          <input
-            type="radio"
-            name="rating-3"
-            className="mask mask-heart bg-red-400"
-          />
-          <input
-            type="radio"
-            name="rating-3"
-            className="mask mask-heart bg-orange-400"
-            checked
-          />
-          <input
-            type="radio"
-            name="rating-3"
-            className="mask mask-heart bg-yellow-400"
-          />
-          <input
-            type="radio"
-            name="rating-3"
-            className="mask mask-heart bg-lime-400"
-          />
-          <input
-            type="radio"
-            name="rating-3"
-            className="mask mask-heart bg-green-400"
+        <Rate allowHalf defaultValue={0} onChange={setRating} value={rating} />
+        <div className=" flex flex-col items-center gap-2">
+          <label className="text-primary text-xs">
+            Which platform did you use?
+          </label>
+          <Select
+            defaultValue={platform}
+            onChange={(value) => setPlatform(value)}
+            style={{ width: 200 }}
+            options={options.map((option: any) => ({
+              value: option,
+              label: option,
+            }))}
           />
         </div>
-        <button
-          type="submit"
-          onClick={() => setHasRated(true)}
-          className="btn btn-wide bg-accent text-darkBlue my-8"
-        >
-          Submit Rating
-        </button>
+        <div className="px-4 w-full mb-6">
+          <Button
+            type="primary"
+            block
+            className="bg-accent"
+            onClick={() => setHasRated(true)}
+          >
+            Submit Rating
+          </Button>
+        </div>
       </div>
     </div>
   );

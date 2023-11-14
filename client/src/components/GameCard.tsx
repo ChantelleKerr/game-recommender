@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { Card, Tag } from "antd";
+import { useState } from "react";
 import { Game, Genre, Platform } from "types";
 import {
   FaPlaystation,
@@ -16,11 +17,6 @@ import RatingModal from "./RatingModal";
 const GameCard = ({ Game }: { Game: Game }) => {
   const [hasRated, setHasRated] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  const updateRated = () => {
-    // TODO: Store favourite onload
-    setIsModalOpen(!isModalOpen);
-  };
 
   const getPlatformIcon = (platform: String) => {
     switch (platform) {
@@ -58,39 +54,57 @@ const GameCard = ({ Game }: { Game: Game }) => {
   };
 
   return (
-    <div className="card flex-1 bg-primary shadow-xl max-w-lg">
-      <figure>
-        <img
-          src={Game.background_image}
-          alt="Game"
-          className="w-full h-60 object-cover object-top"
-        />
-        {getHeartIcon()}
-      </figure>
-      {isModalOpen && (
+    <>
+      {isModalOpen ? (
         <RatingModal
           setIsModalOpen={setIsModalOpen}
           setHasRated={setHasRated}
           Game={Game}
         />
-      )}
-      <div className="card-body p-5">
-        <h2 className="card-title pb-3 text-secondary">{Game.name}</h2>
-        <div className="card-actions justify-end">
-          {Game.parent_platforms.map((plat: Platform, index) => (
-            <span key={index}>{getPlatformIcon(plat.platform.name)}</span>
-          ))}
-        </div>
+      ) : (
+        <Card
+          style={{ width: 300, position: "relative" }}
+          cover={
+            <img
+              alt="game-img"
+              src={Game.background_image}
+              className="h-56 object-cover"
+            />
+          }
+        >
+          {isModalOpen && (
+            <RatingModal
+              setIsModalOpen={setIsModalOpen}
+              setHasRated={setHasRated}
+              Game={Game}
+            />
+          )}
+          {getHeartIcon()}
 
-        <div className="card-actions justify-end">
-          {Game.genres.map((genre: Genre) => (
-            <div className="badge badge-outline" key={genre.name}>
-              {genre.name}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+          <h2 className="-ml-2 -mt-2 text-md">{Game.name}</h2>
+          <div className="flex flex-row justify-end mt-2 -mr-2">
+            {Game.parent_platforms.map((plat: Platform, index) => (
+              <span key={index} className="pr-1">
+                {getPlatformIcon(plat.platform.name)}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap justify-end -mr-3 z-0">
+            {Game.genres.map((genre: Genre) => (
+              <Tag
+                color="default"
+                key={genre.name}
+                className="rounded-lg mt-2 static"
+              >
+                {genre.name}
+              </Tag>
+            ))}
+          </div>
+        </Card>
+      )}
+    </>
   );
 };
+
 export default GameCard;
