@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FaUserCog, FaSearch } from "react-icons/fa";
 import { SlGameController } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import { Menu, Dropdown } from "antd";
 import AuthService from "../services/auth";
+import { AuthContext } from "context/AuthContext";
+import { AuthContextProps } from "types";
 
 const NavBar = () => {
   const links = ["Home", "Rated", "Recommendations"];
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [visible, setVisible] = useState(false);
+  let { user } = useContext<any>(AuthContext);
 
   const handleMenuClick = async (e: any) => {
     if (e.key === "signout") {
       const res = await AuthService.signout();
       console.log(res);
-      setIsLoggedIn(false);
     } else if (e.key === "profile") {
     }
     setVisible(false);
@@ -33,7 +34,7 @@ const NavBar = () => {
 
   return (
     <>
-      {isLoggedIn && (
+      {user && (
         <div className="bg-dark fixed z-10 w-full flex flex-row justify-between items-center px-5 sm:px-10 py-2">
           <div className="flex flex-row gap-4">
             <SlGameController className="text-secondary text-4xl ml-2" />

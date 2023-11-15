@@ -1,9 +1,10 @@
+import { useContext } from "react";
 import axiosWithoutInterceptor, { axiosInstance } from "./axiosInterceptor";
 import { User } from "types";
 
 class AuthService {
-  login(credentials: User) {
-    return axiosWithoutInterceptor.post("/api/user/login/", credentials);
+  async login(credentials: User) {
+    return axiosWithoutInterceptor.post("/api/token/", credentials);
   }
 
   signup(userData: any) {

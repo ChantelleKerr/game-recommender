@@ -1,11 +1,15 @@
 import "index.css";
 import { Link } from "react-router-dom";
 import AuthService from "../services/auth";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { User } from "types";
 import { Input, Button } from "antd";
+import { jwtDecode } from "jwt-decode";
+
+import { AuthContext } from "context/AuthContext";
 
 const Login = () => {
+  const { setAuthTokens, setUser } = useContext<any>(AuthContext);
   const [userForm, setUserForm] = useState<User>({
     username: "",
     password: "",
@@ -24,9 +28,14 @@ const Login = () => {
     console.log(userForm);
 
     const res = await AuthService.login(userForm);
-    console.log(res);
+    let data = res.data;
+    console.log(data);
+    setAuthTokens(data);
+    console.log(jwtDecode(data.access));
+    localStorage.setItem("authTokens", JSON.stringify(data));
+    setUser(jwtDecode(data.access));
 
-    //setUserForm({ username: "", password: "" });
+    setUserForm({ username: "", password: "" });
   };
 
   return (
