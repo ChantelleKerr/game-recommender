@@ -9,6 +9,7 @@ interface AuthProviderProps {
 }
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
+  console.log("HELLO");
   let [authTokens, setAuthTokens] = useState(() => {
     const storedTokens = localStorage.getItem("authTokens");
     return storedTokens ? JSON.parse(storedTokens) : null;

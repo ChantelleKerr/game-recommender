@@ -6,4 +6,4 @@ from .models import Rating
 class RatingSerialiser(ModelSerializer):
   class Meta:
         model = Rating
-        fields = '__all__'
+        fields = ['user', 'game', 'rating', 'platform']

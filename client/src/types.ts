@@ -22,6 +22,13 @@ interface User {
   password?: string;
 }
 
+interface Rating {
+  user: number | null;
+  game: number | null;
+  rating: number;
+  platform: string;
+}
+
 interface AuthContextProps {
   authTokens: { refresh: string; access: string } | null;
   user: any | null;
@@ -31,4 +38,4 @@ interface AuthContextProps {
   >;
 }
 
-export type { Game, Genre, Platform, User, AuthContextProps };
+export type { Game, Genre, Platform, User, Rating, AuthContextProps };

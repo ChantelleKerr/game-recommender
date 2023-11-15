@@ -11,9 +11,10 @@ export const axiosInstance: AxiosInstance = axios.create({
 // Request interceptor
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    const token = localStorage.getItem("jwtToken");
+    let token = localStorage.getItem("authTokens");
+
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${JSON.parse(token).access}`;
     }
     return config;
   },

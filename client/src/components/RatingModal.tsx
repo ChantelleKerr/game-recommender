@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RiCloseLine } from "react-icons/ri";
-import { Game, Genre, Platform } from "types";
-import { Rate, Select, Button } from "antd";
+import { Game, Genre, Platform, Rating } from "types";
+import { Rate, Select, Button, Form } from "antd";
+import { AuthContext } from "context/AuthContext";
+import RatingService from "services/rating";
 
 type Props = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -9,17 +11,36 @@ type Props = {
   Game: Game;
 };
 const RatingModal = ({ setIsModalOpen, setHasRated, Game }: Props) => {
-  const [rating, setRating] = useState<number>(0);
-  const [platform, setPlatform] = useState<string>("Playstation");
-  const options: any = [
-    "Playstation",
-    "Xbox",
-    "PC",
-    "Nintendo",
-    "Apple Macintosh",
-    "Linux",
-    "Android",
-  ];
+  let { user } = useContext<any>(AuthContext);
+  const initialValue: Rating = {
+    user: user.user_id,
+    game: 1, // TODO: Change to actual id
+    rating: 0,
+    platform: "",
+  };
+  const [ratingForm, setRatingForm] = useState<Rating>(initialValue);
+  const options: any = ["Playstation", "Xbox", "PC", "Nintendo"];
+
+  const handleChange = <T extends string | number>(name: string, value: T) => {
+    setRatingForm((prevRatingForm) => ({
+      ...prevRatingForm,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    const res = await RatingService.addRating(ratingForm);
+    console.log(res);
+
+    console.log(ratingForm);
+  };
+
+  const handleChangeRate = (value: number) => {
+    handleChange("rating", value);
+  };
+
+  const handleChangeSelect = (value: string) => {
+    handleChange("platform", value);
+  };
 
   return (
     <div
@@ -37,44 +58,48 @@ const RatingModal = ({ setIsModalOpen, setHasRated, Game }: Props) => {
           className="cursor-pointer"
         />
       </div>
-      <div className=" flex flex-col items-center justify-between">
+      <Form
+        onFinish={handleSubmit}
+        className=" flex flex-col items-center justify-between"
+      >
         <div className="flex flex-col items-center">
           <h1 className="text-2xl text-dark">What is your rating?</h1>
           <h2 className="text-darkGray"> {Game.name}</h2>
         </div>
-        <Rate allowHalf defaultValue={0} onChange={setRating} value={rating} />
+        <Form.Item<Rating> name="rating">
+          <Rate
+            allowHalf
+            value={ratingForm.rating}
+            onChange={handleChangeRate}
+          />
+        </Form.Item>
         <div className=" flex flex-col items-center gap-2">
           <label className="text-darkGray text-xs">
             Which platform did you use?
           </label>
-          <Select
-            defaultValue={platform}
-            onChange={(value) => setPlatform(value)}
-            style={{ width: 200 }}
-            options={options.map((option: any) => ({
-              value: option,
-              label: option,
-            }))}
-          />
+          <Form.Item<Rating> name="platform">
+            <Select
+              onChange={handleChangeSelect}
+              style={{ width: 200 }}
+              options={options.map((option: any) => ({
+                value: option,
+                label: option,
+              }))}
+            />
+          </Form.Item>
         </div>
-        <div className="px-4 w-full mb-6 flex gap-1">
+        <Form.Item className="px-4 w-full mb-6">
           <Button
+            htmlType="submit"
+            name="rating"
             type="primary"
             block
-            className="bg-primary text-dark"
-            onClick={() => setHasRated(true)}
+            className="bg-primary text-white"
           >
             Submit
           </Button>
-          <Button
-            block
-            className="border-accent text-accent"
-            onClick={() => setHasRated(false)}
-          >
-            Delete
-          </Button>
-        </div>
-      </div>
+        </Form.Item>
+      </Form>
     </div>
   );
 };
