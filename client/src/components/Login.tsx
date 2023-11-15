@@ -1,19 +1,27 @@
 import "index.css";
 import { Link } from "react-router-dom";
 import AuthService from "../services/auth";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { User } from "types";
 import { Input, Button } from "antd";
 import { jwtDecode } from "jwt-decode";
-
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "context/AuthContext";
 
 const Login = () => {
-  const { setAuthTokens, setUser } = useContext<any>(AuthContext);
+  const { setAuthTokens, setUser, authTokens } = useContext<any>(AuthContext);
   const [userForm, setUserForm] = useState<User>({
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authTokens) {
+      navigate("/");
+    }
+  }, [authTokens, history]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

@@ -1,16 +1,26 @@
 import "index.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input, Button } from "antd";
 import AuthService from "../services/auth";
 import { User } from "types";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "context/AuthContext";
 
-const Login = () => {
+const Signup = () => {
+  const { authTokens } = useContext<any>(AuthContext);
   const [userForm, setUserForm] = useState<User>({
     username: "",
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authTokens) {
+      navigate("/");
+    }
+  }, [authTokens, history]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -26,8 +36,7 @@ const Login = () => {
 
     const res = await AuthService.signup(userForm);
     console.log(res);
-
-    //setUserForm({ username: "", password: "" });
+    navigate("/login");
   };
 
   return (
@@ -91,4 +100,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
