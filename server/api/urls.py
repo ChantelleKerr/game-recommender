@@ -22,9 +22,8 @@ from .views import MyTokenObtainPairView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/game/', include('api.game.urls')),
-    # path('api/user/', include('api.user.urls'))
 
 ]
