@@ -8,13 +8,13 @@ import RatingService from "services/rating";
 type Props = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setHasRated: React.Dispatch<React.SetStateAction<boolean>>;
-  Game: Game;
+  game: Game;
 };
-const RatingModal = ({ setIsModalOpen, setHasRated, Game }: Props) => {
+const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
   let { user } = useContext<any>(AuthContext);
   const initialValue: Rating = {
     user: user.user_id,
-    game: 1, // TODO: Change to actual id
+    game: game.id,
     rating: 0,
     platform: "",
   };
@@ -29,9 +29,6 @@ const RatingModal = ({ setIsModalOpen, setHasRated, Game }: Props) => {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     const res = await RatingService.addRating(ratingForm);
-    console.log(res);
-
-    console.log(ratingForm);
   };
 
   const handleChangeRate = (value: number) => {
@@ -64,7 +61,7 @@ const RatingModal = ({ setIsModalOpen, setHasRated, Game }: Props) => {
       >
         <div className="flex flex-col items-center">
           <h1 className="text-2xl text-dark">What is your rating?</h1>
-          <h2 className="text-darkGray"> {Game.name}</h2>
+          <h2 className="text-darkGray"> {game.name}</h2>
         </div>
         <Form.Item<Rating> name="rating">
           <Rate

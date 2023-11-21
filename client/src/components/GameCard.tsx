@@ -13,7 +13,7 @@ import { SiNintendoswitch } from "react-icons/si";
 import RatingModal from "./RatingModal";
 import { Button } from "antd";
 
-const GameCard = ({ Game }: { Game: Game }) => {
+const GameCard = ({ game }: { game: Game }) => {
   const [hasRated, setHasRated] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -40,7 +40,7 @@ const GameCard = ({ Game }: { Game: Game }) => {
         <RatingModal
           setIsModalOpen={setIsModalOpen}
           setHasRated={setHasRated}
-          Game={Game}
+          game={game}
         />
       ) : (
         <Card
@@ -48,27 +48,20 @@ const GameCard = ({ Game }: { Game: Game }) => {
           cover={
             <img
               alt="game-img"
-              src={Game.image}
+              src={game.image}
               className="h-56 object-cover"
             />
           }
         >
-          {isModalOpen && (
-            <RatingModal
-              setIsModalOpen={setIsModalOpen}
-              setHasRated={setHasRated}
-              Game={Game}
-            />
-          )}
           {hasRated && (
             <FaStar className="absolute top-2 right-2 text-accent text-2xl" />
           )}
 
-          <h2 className="-ml-2 -mt-2 text-md">{Game.name}</h2>
+          <h2 className="-ml-2 -mt-2 text-md">{game.name}</h2>
           <div className="flex flex-col justify-between">
             <div className="flex flex-row justify-between">
               <div className="flex flex-row justify-between mt-2 -ml-2">
-                {Game.platforms.map((platforms: Platform, index) => (
+                {game.platforms.map((platforms: Platform, index) => (
                   <span key={index} className="pr-1">
                     {getPlatformIcon(platforms.name)}
                   </span>
@@ -85,7 +78,7 @@ const GameCard = ({ Game }: { Game: Game }) => {
             </div>
 
             <div className="flex flex-wrap -ml-2 z-0">
-              {Game.genres.map((genre: Genre) => (
+              {game.genres.map((genre: Genre) => (
                 <Tag
                   key={genre.name}
                   className="rounded-lg mt-1 mr-1 static bg-primary/10 border-primary text-primary text-[0.6rem] p-0 h-4 px-1 leading-snug"

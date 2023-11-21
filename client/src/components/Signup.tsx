@@ -32,10 +32,8 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(userForm);
 
     const res = await AuthService.signup(userForm);
-    console.log(res);
     navigate("/login");
   };
 

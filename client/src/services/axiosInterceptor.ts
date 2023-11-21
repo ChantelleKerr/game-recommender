@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosError } from "axios";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
-console.log(baseURL);
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: baseURL, // Your Django backend URL

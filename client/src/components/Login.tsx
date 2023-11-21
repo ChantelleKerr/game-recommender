@@ -33,13 +33,10 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(userForm);
 
     const res = await AuthService.login(userForm);
     let data = res.data;
-    console.log(data);
     setAuthTokens(data);
-    console.log(jwtDecode(data.access));
     localStorage.setItem("authTokens", JSON.stringify(data));
     setUser(jwtDecode(data.access));
 
