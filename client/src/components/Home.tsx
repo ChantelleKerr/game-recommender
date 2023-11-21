@@ -1,4 +1,4 @@
-import GameList from "./GameList";
+import GameList from "./Game/GameList";
 import GameService from "../services/game";
 import { useContext, useEffect, useState } from "react";
 import { Game } from "types";

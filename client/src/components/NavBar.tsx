@@ -7,7 +7,11 @@ import AuthService from "../services/auth";
 import { AuthContext } from "context/AuthContext";
 
 const NavBar = () => {
-  const links = ["Home", "Rated", "Recommendations"];
+  const links = {
+    home: "/",
+    rated: "/ratings",
+    recommendations: "/",
+  };
   const [visible, setVisible] = useState(false);
   let { authTokens } = useContext<any>(AuthContext);
 
@@ -38,9 +42,11 @@ const NavBar = () => {
           <div className="flex flex-row gap-4">
             <SlGameController className="text-secondary text-4xl ml-2" />
             <ul className="flex flex-row gap-3 items-center mb-0">
-              {links.map((link) => (
-                <li>
-                  <a className="text-secondary text-xs">{link}</a>
+              {Object.entries(links).map(([key, value]) => (
+                <li key={key}>
+                  <Link to={value} className="text-secondary text-xs">
+                    {key}
+                  </Link>
                 </li>
               ))}
             </ul>
