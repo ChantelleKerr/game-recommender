@@ -3,9 +3,9 @@ import { Dispatch, SetStateAction } from "react";
 interface Game {
   id: number;
   name: string;
-  background_image: string;
+  image: string;
   genres: Genre[];
-  parent_platforms: Platform[];
+  platforms: Platform[];
 }
 interface Genre {
   name: string;

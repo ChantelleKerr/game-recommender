@@ -5,13 +5,11 @@ import {
   FaPlaystation,
   FaXbox,
   FaWindows,
-  FaLinux,
   FaApple,
-  FaAndroid,
-  FaRegStar,
+  FaMobileScreen,
   FaStar,
 } from "react-icons/fa6";
-import { SiNintendo } from "react-icons/si";
+import { SiNintendoswitch } from "react-icons/si";
 import RatingModal from "./RatingModal";
 import { Button } from "antd";
 
@@ -21,20 +19,16 @@ const GameCard = ({ Game }: { Game: Game }) => {
 
   const getPlatformIcon = (platform: String) => {
     switch (platform) {
-      case "PlayStation":
+      case "Playstation":
         return <FaPlaystation className="text-gray-600" />;
       case "Xbox":
         return <FaXbox className="text-gray-600" />;
       case "Nintendo":
-        return <SiNintendo className="text-gray-600" />;
+        return <SiNintendoswitch className="text-gray-600" />;
       case "PC":
         return <FaWindows className="text-gray-600" />;
-      case "Apple Macintosh":
-        return <FaApple className="text-gray-600" />;
-      case "Linux":
-        return <FaLinux className="text-gray-600" />;
-      case "Android":
-        return <FaAndroid className="text-gray-600" />;
+      case "Mobile":
+        return <FaMobileScreen className="text-gray-600" />;
       default:
         return null;
     }
@@ -54,7 +48,7 @@ const GameCard = ({ Game }: { Game: Game }) => {
           cover={
             <img
               alt="game-img"
-              src={Game.background_image}
+              src={Game.image}
               className="h-56 object-cover"
             />
           }
@@ -74,9 +68,9 @@ const GameCard = ({ Game }: { Game: Game }) => {
           <div className="flex flex-col justify-between">
             <div className="flex flex-row justify-between">
               <div className="flex flex-row justify-between mt-2 -ml-2">
-                {Game.parent_platforms.map((plat: Platform, index) => (
+                {Game.platforms.map((platforms: Platform, index) => (
                   <span key={index} className="pr-1">
-                    {getPlatformIcon(plat.platform.name)}
+                    {getPlatformIcon(platforms.name)}
                   </span>
                 ))}
               </div>
@@ -94,7 +88,7 @@ const GameCard = ({ Game }: { Game: Game }) => {
               {Game.genres.map((genre: Genre) => (
                 <Tag
                   key={genre.name}
-                  className="rounded-lg mt-2 static bg-primary/10 border-primary text-primary text-[0.6rem] p-0 h-4 px-1 leading-snug"
+                  className="rounded-lg mt-1 mr-1 static bg-primary/10 border-primary text-primary text-[0.6rem] p-0 h-4 px-1 leading-snug"
                 >
                   {genre.name}
                 </Tag>
