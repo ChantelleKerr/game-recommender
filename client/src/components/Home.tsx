@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Game } from "types";
 import { AuthContext } from "context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import FeaturedGame from "./FeaturedGame";
 
 interface IGameInformation {
   allGames: Game[];
@@ -14,6 +15,7 @@ const Home = () => {
   const { user } = useContext<any>(AuthContext);
   const [games, setGames] = useState<IGameInformation>();
   const [loading, setLoading] = useState<boolean>(true);
+  const [featured, setFeatured] = useState<Game>();
 
   const navigate = useNavigate();
 
@@ -33,6 +35,7 @@ const Home = () => {
         allGames: allGamesData,
         recommended: recommendedGamesData,
       });
+      setFeatured(allGamesData[0]);
       setLoading(false);
     };
     fetchGames();
@@ -41,8 +44,9 @@ const Home = () => {
     <>
       {!loading && (
         <div>
-          <GameList games={games?.recommended} title="Recommendations" />
-          <GameList games={games?.allGames} title="All Games" />
+          <FeaturedGame game={featured} />
+          <GameList games={games?.recommended} title="Recommended Games" />
+          <GameList games={games?.allGames} title="Browse Games" />
         </div>
       )}
     </>

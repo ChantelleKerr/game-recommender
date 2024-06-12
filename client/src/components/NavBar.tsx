@@ -1,18 +1,20 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { FaUserCog, FaSearch } from "react-icons/fa";
 import { SlGameController } from "react-icons/sl";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import { Menu, Dropdown } from "antd";
 import AuthService from "../services/auth";
 import { AuthContext } from "context/AuthContext";
+import "styles/styles.css";
 
 const NavBar = () => {
   const links = {
-    home: "/",
-    rated: "/ratings",
-    recommendations: "/",
+    Home: "/",
+    Rated: "/ratings",
+    Recommendations: "/reat",
   };
   const [visible, setVisible] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   let { authTokens } = useContext<any>(AuthContext);
 
   const handleMenuClick = async (e: any) => {
@@ -35,20 +37,45 @@ const NavBar = () => {
     </Menu>
   );
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       {authTokens && (
-        <div className="bg-dark fixed z-10 w-full flex flex-row justify-between items-center px-5 sm:px-10 py-2">
+        <div
+          className={`fixed z-10 w-full flex flex-row justify-between items-center px-5 sm:px-10 py-4 ${
+            isScrolled ? "nav-solid" : "nav-gradient"
+          }`}
+        >
           <div className="flex flex-row gap-4">
-            <SlGameController className="text-secondary text-4xl ml-2" />
-            <ul className="flex flex-row gap-3 items-center mb-0">
-              {Object.entries(links).map(([key, value]) => (
-                <li key={key}>
-                  <Link to={value} className="text-secondary text-xs">
-                    {key}
-                  </Link>
-                </li>
-              ))}
+            <SlGameController className="text-primary text-4xl ml-2" />
+            <ul className="flex flex-row gap-6 items-center mb-0">
+              {Object.entries(links).map(([key, value]) => {
+                const match = useMatch(value);
+                return (
+                  <li key={key}>
+                    <Link
+                      to={value}
+                      className={`text-s ${
+                        match ? "text-secondary" : "text-secondary/80"
+                      }`}
+                    >
+                      {key}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

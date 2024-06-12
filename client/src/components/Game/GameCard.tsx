@@ -22,7 +22,12 @@ const GameCard = ({ game }: { game: Game }) => {
         />
       ) : (
         <Card
-          style={{ width: 300, position: "relative" }}
+          style={{
+            width: 300,
+            position: "relative",
+            background: "#241e1e",
+            border: "none",
+          }}
           cover={
             <img
               alt="game-img"
@@ -35,7 +40,7 @@ const GameCard = ({ game }: { game: Game }) => {
             <FaStar className="absolute top-2 right-2 text-accent text-2xl" />
           )}
 
-          <h2 className="-ml-2 -mt-2 font-bold">{game.name}</h2>
+          <h2 className="-ml-2 -mt-2 font-bold text-secondary">{game.name}</h2>
           <div className="flex flex-col justify-between -ml-2">
             <div className="flex flex-row justify-between">
               <GamePlatforms game={game} />

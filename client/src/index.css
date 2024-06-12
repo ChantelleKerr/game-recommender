@@ -2,18 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-::-moz-selection {
-  background: #38a1db;
-}
-::-webkit-selection {
-  background: #38a1db;
-}
-::selection {
-  background: #38a1db;
-}
-
 :root {
-  background-color: #e6e6e6;
+  background-color: #141414;
 }
 
 .background-container {

@@ -11,15 +11,15 @@ const GamePlatforms = ({ game }: { game: Game }) => {
   const getPlatformIcon = (platform: String) => {
     switch (platform) {
       case "Playstation":
-        return <FaPlaystation className="text-gray-600" />;
+        return <FaPlaystation className="text-secondary" />;
       case "Xbox":
-        return <FaXbox className="text-gray-600" />;
+        return <FaXbox className="text-secondary" />;
       case "Nintendo":
-        return <SiNintendoswitch className="text-gray-600" />;
+        return <SiNintendoswitch className="text-secondary" />;
       case "PC":
-        return <FaWindows className="text-gray-600" />;
+        return <FaWindows className="text-secondary" />;
       case "Mobile":
-        return <FaMobileScreen className="text-gray-600" />;
+        return <FaMobileScreen className="text-secondary" />;
       default:
         return null;
     }
