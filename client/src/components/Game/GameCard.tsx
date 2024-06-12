@@ -47,7 +47,7 @@ const GameCard = ({ game }: { game: Game }) => {
               {!hasRated && (
                 <Button
                   onClick={() => setIsModalOpen(!isModalOpen)}
-                  className="bg-primary text-white -mr-2 border-none text-[0.65rem] p-0 px-1.5 h-6"
+                  className="bg-primary text-white -mr-2 border-none text-[0.65rem] p-0 px-1.5 h-6 ant-custom-button"
                 >
                   RATE ME
                 </Button>

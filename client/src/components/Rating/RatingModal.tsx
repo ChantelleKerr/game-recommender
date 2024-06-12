@@ -41,7 +41,7 @@ const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
 
   return (
     <div
-      className="bg-white rounded-xl"
+      className="bg-dark rounded-xl"
       style={{
         width: 300,
         height: 339,
@@ -61,17 +61,18 @@ const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
       >
         <div className="flex flex-col items-center">
           <h1 className="text-2xl text-dark">What is your rating?</h1>
-          <h2 className="text-darkGray"> {game.name}</h2>
+          <h2 className="text-secondary"> {game.name}</h2>
         </div>
         <Form.Item<Rating> name="rating">
           <Rate
             allowHalf
             value={ratingForm.rating}
             onChange={handleChangeRate}
+            style={{ color: "text-secondary" }}
           />
         </Form.Item>
         <div className=" flex flex-col items-center gap-2">
-          <label className="text-darkGray text-xs">
+          <label className="text-secondary text-xs">
             Which platform did you use?
           </label>
           <Form.Item<Rating> name="platform">
@@ -91,7 +92,7 @@ const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
             name="rating"
             type="primary"
             block
-            className="bg-primary text-white"
+            className="bg-primary text-white ant-custom-button"
           >
             Submit
           </Button>

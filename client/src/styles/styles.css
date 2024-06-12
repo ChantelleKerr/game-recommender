@@ -21,7 +21,11 @@
   left: 0;
   right: 0;
   height: 30%;
-  background: linear-gradient(to top, #141414 10%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    to top,
+    theme("colors.darkGray") 10%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .explore-all {
@@ -31,10 +35,57 @@
   padding-top: 0.6rem;
   padding-left: 0.75rem;
   font-size: 0.75rem;
-  color: #e50914;
+  color: theme("colors.primary");
 }
 
 .group:hover .explore-all {
   opacity: 1;
   transform: translateX(0);
+}
+
+.ant-select-selector {
+  background-color: theme("colors.darkGray") !important;
+  color: theme("colors.secondary") !important;
+}
+.ant-select-selection-item {
+  color: theme("colors.secondary") !important;
+}
+.ant-select-dropdown {
+  background-color: theme("colors.darkGray") !important;
+  color: theme("colors.secondary") !important;
+}
+.ant-select-item {
+  background-color: theme("colors.darkGray") !important;
+  color: theme("colors.secondary") !important;
+}
+
+.ant-select-item:hover {
+  background-color: theme("colors.dark") !important;
+}
+.ant-rate-star-zero .anticon-star {
+  color: theme("colors.darkGray");
+}
+
+.ant-rate-star-first {
+  color: #fadb14 !important;
+}
+.ant-rate-star-first {
+  color: #fadb14 !important;
+}
+
+.ant-custom-button:hover {
+  background-color: rgba(229, 8, 21, 0.8) !important;
+  color: white !important;
+}
+
+.ant-dropdown-menu {
+  background-color: theme("colors.darkGray") !important;
+}
+
+.ant-dropdown-menu-item {
+  color: theme("colors.secondary") !important;
+}
+
+.ant-dropdown-menu-item-active {
+  background-color: theme("colors.dark") !important;
 }
