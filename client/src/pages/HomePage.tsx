@@ -36,7 +36,9 @@ const Home = () => {
         allGames: allGamesData,
         recommended: recommendedGamesData,
       });
-      setFeatured(allGamesData[0]);
+
+      const randomGameIndex = Math.floor(Math.random() * allGamesData.length);
+      setFeatured(allGamesData[randomGameIndex]);
       setLoading(false);
     };
     fetchGames();
