@@ -1,6 +1,6 @@
-import pandas as pd
 from api.rating.models import Rating
 from django.contrib.auth.models import User
+from django.db.models import Avg, Q
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from .models import Game
 from .rec_model import get_user_recommendation
-from .serialiser import GameSerialiser
+from .serialiser import GameSerialiser, TopRatedGameSerializer
 
 
 @api_view(["GET"])
@@ -31,4 +31,15 @@ def get_recommendation(request, id):
         return Response({'error': 'User not found'}, status=404)
 
 
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_top_rated(request):
+    top_rated_games = (
+        Game.objects
+        .annotate(average_rating=Avg('rating__rating'))
+        .filter(~Q(average_rating=None)) 
+        .order_by('-average_rating')[:10]
+    )
 
+    serializer = TopRatedGameSerializer(top_rated_games, many=True)
+    return Response(serializer.data, status=200)
