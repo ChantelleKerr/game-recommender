@@ -1,10 +1,10 @@
-import GameList from "./Game/GameList";
+import GameList from "../components/Game/GameList";
 import GameService from "../services/game";
 import { useContext, useEffect, useState } from "react";
 import { Game } from "types";
 import { AuthContext } from "context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import FeaturedGame from "./FeaturedGame";
+import FeaturedGame from "../components/FeaturedGame";
 
 interface IGameInformation {
   allGames: Game[];
