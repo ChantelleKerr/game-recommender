@@ -11,6 +11,9 @@ module.exports = {
         dark: "#241e1e",
         darkGray: "#141414",
       },
+      fontFamily: {
+        archivo: ["Archivo"],
+      },
     },
   },
   plugins: [],

@@ -91,3 +91,9 @@
 .ant-dropdown-menu-item-active {
   background-color: theme("colors.dark") !important;
 }
+
+.text-border {
+  text-shadow: -1px -1px 0 theme("colors.secondary"),
+    1px -1px 0 theme("colors.secondary"), -1px 1px 0 theme("colors.secondary"),
+    1px 1px 0 theme("colors.secondary");
+}

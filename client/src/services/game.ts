@@ -10,5 +10,9 @@ class GameService {
       "/api/game/get_recommendation/" + user_id
     );
   }
+
+  async getTopRatedGames() {
+    return axiosWithoutInterceptor.get("/api/game/get_top_rated/");
+  }
 }
 export default new GameService();

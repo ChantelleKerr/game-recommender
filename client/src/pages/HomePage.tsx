@@ -5,6 +5,7 @@ import { Game } from "types";
 import { AuthContext } from "context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import FeaturedGame from "../components/FeaturedGame";
+import TopRatedGameList from "components/Game/TopRated/TopRatedGameList";
 
 interface IGameInformation {
   allGames: Game[];
@@ -45,6 +46,7 @@ const Home = () => {
       {!loading && (
         <div>
           <FeaturedGame game={featured} />
+          <TopRatedGameList />
           <GameList games={games?.recommended} title="Recommended Games" />
           <GameList games={games?.allGames} title="Browse Games" />
         </div>

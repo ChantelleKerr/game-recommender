@@ -4,8 +4,12 @@ interface Game {
   id: number;
   name: string;
   image: string;
-  genres: Genre[];
-  platforms: Platform[];
+  genres?: Genre[];
+  platforms?: Platform[];
+}
+
+interface TopRatedGames extends Game {
+  average_rating: number;
 }
 interface Genre {
   name: string;
@@ -38,4 +42,12 @@ interface AuthContextProps {
   >;
 }
 
-export type { Game, Genre, Platform, User, Rating, AuthContextProps };
+export type {
+  Game,
+  Genre,
+  Platform,
+  TopRatedGames,
+  User,
+  Rating,
+  AuthContextProps,
+};
