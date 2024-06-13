@@ -1,4 +1,3 @@
-import React from "react";
 import { Rating } from "types";
 import RatingCard from "./RatingCard";
 

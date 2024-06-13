@@ -24,7 +24,7 @@ interface User {
 
 interface Rating {
   user: number | null;
-  game: number | null;
+  game: number | Game;
   rating: number;
   platform: string;
 }

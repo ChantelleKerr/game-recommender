@@ -10,6 +10,7 @@ import "styles/styles.css";
 const NavBar = () => {
   const links = {
     Home: "/",
+    Browse: "/browse",
     Rated: "/ratings",
     Recommendations: "/reat",
   };

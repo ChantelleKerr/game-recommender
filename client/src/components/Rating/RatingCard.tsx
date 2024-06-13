@@ -25,6 +25,7 @@ const RatingCard = ({ rating }: { rating: Rating }) => {
         </div>
         <div className="flex flex-col justify-between">
           <div className="flex flex-row justify-between">
+            {/* TODO: Only render Platform that has been rated */}
             <GamePlatforms game={rating.game} />
           </div>
           <GameGenres genres={rating.game.genres} />

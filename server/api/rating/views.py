@@ -11,12 +11,12 @@ from .serialiser import RatingSerialiser
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def add_rating(request):
-    request.data['platform'] = Platform.objects.get(name=request.data['platform']).id
     serialiser = RatingSerialiser(data=request.data)
     if serialiser.is_valid():
         serialiser.save()
         return Response(serialiser.data, status=200)
     else:
+        print(serialiser.errors)
         return Response(serialiser.errors, status=400)
     
 

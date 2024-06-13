@@ -22,9 +22,7 @@ const RatingsPage = () => {
     fetchRatings();
   }, []);
   return (
-    <div className="pt-10">
-      <RatingList ratings={ratings} />
-    </div>
+    <div className="pt-10">{ratings && <RatingList ratings={ratings} />}</div>
   );
 };
 

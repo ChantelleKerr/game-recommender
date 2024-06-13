@@ -14,7 +14,7 @@ const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
   let { user } = useContext<any>(AuthContext);
   const initialValue: Rating = {
     user: user.user_id,
-    game: game.id,
+    game: game,
     rating: 0,
     platform: "",
   };
