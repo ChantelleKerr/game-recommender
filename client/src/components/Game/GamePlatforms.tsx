@@ -7,6 +7,7 @@ import {
   FaStar,
 } from "react-icons/fa6";
 import { SiNintendoswitch } from "react-icons/si";
+
 const GamePlatforms = ({ game }: { game: Game }) => {
   const getPlatformIcon = (platform: String) => {
     switch (platform) {
@@ -25,7 +26,7 @@ const GamePlatforms = ({ game }: { game: Game }) => {
     }
   };
   return (
-    <div className="flex flex-row justify-between mt-2">
+    <div className="flex flex-row justify-between items-center">
       {game.platforms.map((platforms: Platform, index) => (
         <span key={index} className="pr-1">
           {getPlatformIcon(platforms.name)}

@@ -17,6 +17,7 @@ const RatingsPage = () => {
     const fetchRatings = async () => {
       const res = await RatingService.getRatings(user.user_id);
       setRatings(res.data);
+      console.log(ratings);
       setLoading(false);
     };
     fetchRatings();

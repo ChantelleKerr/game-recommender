@@ -7,9 +7,11 @@ import { FaAngleRight } from "react-icons/fa6";
 interface GameListProps {
   games: Game[];
   title: string;
+  ratedGames: [];
 }
 
-const GameList = ({ games, title }: GameListProps) => {
+const GameList = ({ games, title, ratedGames }: GameListProps) => {
+  const checkGameId = new Set(ratedGames.map((rating) => rating.game.id));
   return (
     <div className="container mx-auto px-2 sm:px-4 lg:px-6 relative">
       <Link to="/recommended" className="flex group">
@@ -25,7 +27,11 @@ const GameList = ({ games, title }: GameListProps) => {
         {games &&
           games.map((game, index) => (
             <li key={index}>
-              <GameCard game={game} />
+              {checkGameId.has(game.id) ? (
+                <GameCard game={game} isRated={true} />
+              ) : (
+                <GameCard game={game} isRated={false} />
+              )}
             </li>
           ))}
       </ul>

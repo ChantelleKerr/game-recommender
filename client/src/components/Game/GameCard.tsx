@@ -8,8 +8,13 @@ import { Button } from "antd";
 import GamePlatforms from "./GamePlatforms";
 import GameGenres from "./GameGenres";
 
-const GameCard = ({ game }: { game: Game }) => {
-  const [hasRated, setHasRated] = useState<boolean>(false);
+interface IGameCardProps {
+  game: Game;
+  isRated: boolean;
+}
+
+const GameCard = ({ game, isRated }: IGameCardProps) => {
+  const [hasRated, setHasRated] = useState<boolean>(isRated);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
@@ -37,7 +42,9 @@ const GameCard = ({ game }: { game: Game }) => {
           }
         >
           {hasRated && (
-            <FaStar className="absolute top-2 right-2 text-accent text-2xl" />
+            <div className="bg-dark p-2 absolute top-0 right-2 rounded-b-md">
+              <FaStar className=" text-primary text-2xl" />
+            </div>
           )}
 
           <h2 className="-ml-2 -mt-2 font-bold text-secondary">{game.name}</h2>
@@ -47,7 +54,7 @@ const GameCard = ({ game }: { game: Game }) => {
               {!hasRated && (
                 <Button
                   onClick={() => setIsModalOpen(!isModalOpen)}
-                  className="bg-primary text-white -mr-2 border-none text-[0.75rem] p-0 px-4 h-8 ant-custom-button"
+                  className="bg-primary text-white -mr-2 border-none text-[0.75rem] p-0 px-4 h-8 ant-custom-button m-2"
                 >
                   RATE ME
                 </Button>

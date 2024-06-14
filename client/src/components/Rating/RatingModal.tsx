@@ -52,7 +52,7 @@ const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
       <div className="flex justify-end p-5">
         <RiCloseLine
           onClick={() => setIsModalOpen(false)}
-          className="cursor-pointer"
+          className="cursor-pointer text-secondary"
         />
       </div>
       <Form

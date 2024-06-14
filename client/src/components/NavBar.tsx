@@ -55,7 +55,7 @@ const NavBar = () => {
     <>
       {authTokens && (
         <div
-          className={`fixed z-10 w-full flex flex-row justify-between items-center px-5 sm:px-10 py-4 ${
+          className={`fixed z-30 w-full flex flex-row justify-between items-center px-5 sm:px-10 py-4 ${
             isScrolled ? "nav-solid" : "nav-gradient"
           }`}
         >

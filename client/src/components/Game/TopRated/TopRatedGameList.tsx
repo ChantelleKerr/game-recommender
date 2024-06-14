@@ -39,10 +39,10 @@ const TopRatedGameList = () => {
                       <img
                         src={game.image}
                         alt="Game Image"
-                        className="object-cover h-40 w-32"
+                        className="object-cover h-40 w-32 rounded-md"
                       />
                       {/* TODO: Add Hover effect to see rating */}
-                      <span className="absolute bottom-0 flex justify-center font-bold text-xs text-white bg-black bg-opacity-50 px-2 py-2 w-full">
+                      <span className="absolute bottom-0 flex justify-center font-bold text-xs text-white bg-black bg-opacity-50 px-2 py-2 w-full rounded-b-md">
                         {game.name}
                       </span>
                     </div>
