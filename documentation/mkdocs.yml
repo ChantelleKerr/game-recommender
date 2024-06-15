@@ -1,0 +1,6 @@
+site_name: Technical Documentation
+theme:
+  name: readthedocs
+nav:
+  - Home: index.md
+  - Recommendation Algorithm: recommend.md
