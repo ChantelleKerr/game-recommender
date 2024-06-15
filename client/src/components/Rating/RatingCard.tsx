@@ -4,7 +4,6 @@ import { FaTrash } from "react-icons/fa";
 import { Rating } from "types";
 
 const RatingCard = ({ rating }: { rating: Rating }) => {
-  console.log(rating);
   return (
     <div className="flex bg-dark h-28 w-full rounded-md">
       <div className="flex justify-center items-center w-2/3 relative">

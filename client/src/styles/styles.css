@@ -92,6 +92,10 @@
   background-color: theme("colors.dark") !important;
 }
 
+.ant-spin-dot-item {
+  background-color: theme("colors.primary") !important;
+}
+
 .text-border {
   text-shadow: -1px -1px 0 theme("colors.secondary"),
     1px -1px 0 theme("colors.secondary"), -1px 1px 0 theme("colors.secondary"),

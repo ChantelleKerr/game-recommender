@@ -53,13 +53,16 @@ const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
       className="bg-dark rounded-xl"
       style={{
         width: 300,
-        height: 339,
-        display: "grid",
-        gridTemplateRows: "auto 1fr auto",
+        height: 365,
       }}
     >
       {!isLoading ? (
-        <>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateRows: "auto 1fr auto",
+          }}
+        >
           <div className="flex justify-end p-5">
             <RiCloseLine
               onClick={() => setIsModalOpen(false)}
@@ -109,9 +112,11 @@ const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
               </Button>
             </Form.Item>
           </Form>
-        </>
+        </div>
       ) : (
-        <Spin fullscreen tip="Submiting..." />
+        <div className="flex justify-center items-center h-full">
+          <Spin />
+        </div>
       )}
     </div>
   );
