@@ -21,7 +21,6 @@ const NavBar = () => {
   const handleMenuClick = async (e: any) => {
     if (e.key === "signout") {
       const res = await AuthService.signout();
-      console.log("$%^$%^$", res);
     } else if (e.key === "profile") {
     }
     setVisible(false);

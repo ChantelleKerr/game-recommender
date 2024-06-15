@@ -8,17 +8,15 @@ import { useNavigate } from "react-router-dom";
 import FeaturedGame from "../components/FeaturedGame";
 import TopRatedGameList from "components/Game/TopRated/TopRatedGameList";
 
-interface IGameInformation {
-  allGames: Game[];
-  recommended: Game[];
-  ratedGames: Rating[];
-}
-
 const Home = () => {
   const { user } = useContext<any>(AuthContext);
-  const [games, setGames] = useState<IGameInformation>();
-  const [loading, setLoading] = useState<boolean>(true);
+
+  const [games, setGames] = useState<Game[]>();
+  const [recommendedGames, setRecommendedGames] = useState<Game[]>();
+  const [ratedGames, setRatedGames] = useState<Rating[]>();
   const [featured, setFeatured] = useState<Game>();
+
+  const [loading, setLoading] = useState<boolean>(true);
 
   const navigate = useNavigate();
 
@@ -26,22 +24,15 @@ const Home = () => {
     const fetchGames = async () => {
       if (!user) navigate("/login");
 
-      const allGamesResponse = await GameService.getGames();
-      const allGamesData = allGamesResponse.data;
-
-      const recommendedGamesResponse = await GameService.getRecommendedGames(
+      const allGamesData = await GameService.getGames();
+      const recommendedGamesData = await GameService.getRecommendedGames(
         user.user_id
       );
-      const recommendedGamesData = recommendedGamesResponse.data;
+      const ratedGamesData = await RatingService.getRatings(user.user_id);
 
-      const ratedGameResponse = await RatingService.getRatings(user.user_id);
-      const ratedGameData = ratedGameResponse.data;
-
-      setGames({
-        allGames: allGamesData,
-        recommended: recommendedGamesData,
-        ratedGames: ratedGameData,
-      });
+      setGames(allGamesData);
+      setRecommendedGames(recommendedGamesData);
+      setRatedGames(ratedGamesData);
 
       const randomGameIndex = Math.floor(Math.random() * allGamesData.length);
       setFeatured(allGamesData[randomGameIndex]);
@@ -52,20 +43,20 @@ const Home = () => {
   return (
     <>
       {!loading && (
-        <div>
+        <>
           <FeaturedGame game={featured} />
           <TopRatedGameList />
           <GameList
-            games={games?.recommended}
+            games={recommendedGames}
             title="Recommended Games"
-            ratedGames={games?.ratedGames}
+            ratedGames={ratedGames}
           />
           <GameList
-            games={games?.allGames}
+            games={games}
             title="Browse Games"
-            ratedGames={games?.ratedGames}
+            ratedGames={ratedGames}
           />
-        </div>
+        </>
       )}
     </>
   );

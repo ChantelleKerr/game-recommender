@@ -2,13 +2,16 @@ import { useContext } from "react";
 import axiosWithoutInterceptor, { axiosInstance } from "./axiosInterceptor";
 import { User, Rating } from "types";
 
+const endpoint = "rating";
 class RatingService {
   async addRating(rating: Rating) {
-    return axiosInstance.post("/api/rating/create/", rating);
+    const response = await axiosInstance.post(`/${endpoint}/create/`, rating);
+    return response.data;
   }
 
   async getRatings(user_id: number) {
-    return axiosInstance.get("/api/rating/get/" + user_id);
+    const response = await axiosInstance.get(`/${endpoint}/get/` + user_id);
+    return response.data;
   }
 }
 

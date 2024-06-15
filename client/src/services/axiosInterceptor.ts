@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosError } from "axios";
 
-const baseURL = import.meta.env.VITE_BACKEND_URL;
+const baseURL = import.meta.env.VITE_BACKEND_URL + "/api";
 
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: baseURL, // Your Django backend URL
-  timeout: 5000, // Timeout for requests
+  baseURL: baseURL,
+  timeout: 5000,
 });
 
 // Request interceptor

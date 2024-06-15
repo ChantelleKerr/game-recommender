@@ -7,9 +7,8 @@ const TopRatedGameList = () => {
   const [topGames, setTopGames] = useState<TopRatedGames[]>();
   useEffect(() => {
     const fetchTopGames = async () => {
-      const topGamesResponse = await GameService.getTopRatedGames();
-      setTopGames(topGamesResponse.data);
-      console.log(topGames);
+      const topRatedGames = await GameService.getTopRatedGames();
+      setTopGames(topRatedGames);
 
       setLoading(false);
     };
