@@ -5,8 +5,7 @@ import { User, Rating } from "types";
 const endpoint = "rating";
 class RatingService {
   async addRating(rating: Rating) {
-    const response = await axiosInstance.post(`/${endpoint}/create/`, rating);
-    return response.data;
+    await axiosInstance.post(`/${endpoint}/create/`, rating);
   }
 
   async getRatings(user_id: number) {
