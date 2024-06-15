@@ -1,9 +1,10 @@
 import GameGenres from "components/Game/GameGenres";
-import GamePlatforms from "components/Game/GamePlatforms";
+import GamePlatformIcon from "components/Game/GamePlatformIcon";
 import { FaTrash } from "react-icons/fa";
 import { Rating } from "types";
 
 const RatingCard = ({ rating }: { rating: Rating }) => {
+  console.log(rating);
   return (
     <div className="flex bg-dark h-28 w-full rounded-md">
       <div className="flex justify-center items-center w-2/3 relative">
@@ -26,7 +27,7 @@ const RatingCard = ({ rating }: { rating: Rating }) => {
         <div className="flex flex-col justify-between">
           <div className="flex flex-row justify-between">
             {/* TODO: Only render Platform that has been rated */}
-            <GamePlatforms game={rating.game} />
+            <GamePlatformIcon platform={rating.platform} />
           </div>
           <GameGenres genres={rating.game.genres} />
         </div>

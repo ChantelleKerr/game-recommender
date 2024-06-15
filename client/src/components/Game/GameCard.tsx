@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa6";
 
 import RatingModal from "../Rating/RatingModal";
 import { Button } from "antd";
-import GamePlatforms from "./GamePlatforms";
+import GamePlatformsList from "./GamePlatformsList";
 import GameGenres from "./GameGenres";
 
 interface IGameCardProps {
@@ -50,7 +50,7 @@ const GameCard = ({ game, isRated }: IGameCardProps) => {
           <h2 className="-ml-2 -mt-2 font-bold text-secondary">{game.name}</h2>
           <div className="flex flex-col justify-between -ml-2">
             <div className="flex flex-row justify-between">
-              <GamePlatforms game={game} />
+              <GamePlatformsList platforms={game.platforms} />
               {!hasRated && (
                 <Button
                   onClick={() => setIsModalOpen(!isModalOpen)}

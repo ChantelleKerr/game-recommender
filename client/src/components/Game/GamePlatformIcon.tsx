@@ -8,8 +8,8 @@ import {
 } from "react-icons/fa6";
 import { SiNintendoswitch } from "react-icons/si";
 
-const GamePlatforms = ({ game }: { game: Game }) => {
-  const getPlatformIcon = (platform: String) => {
+const GamePlatformIcon = ({ platform }: { platform: string }) => {
+  const getIcon = () => {
     switch (platform) {
       case "Playstation":
         return <FaPlaystation className="text-secondary" />;
@@ -25,15 +25,7 @@ const GamePlatforms = ({ game }: { game: Game }) => {
         return null;
     }
   };
-  return (
-    <div className="flex flex-row justify-between items-center">
-      {game.platforms.map((platforms: Platform, index) => (
-        <span key={index} className="pr-1">
-          {getPlatformIcon(platforms.name)}
-        </span>
-      ))}
-    </div>
-  );
+  return <>{getIcon()}</>;
 };
 
-export default GamePlatforms;
+export default GamePlatformIcon;
