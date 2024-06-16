@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import GameService from "services/game";
 import { TopRatedGames } from "types";
+import { FaStar } from "react-icons/fa6";
 
 const TopRatedGameList = () => {
   const [loading, setLoading] = useState<Boolean>(true);
@@ -40,10 +41,15 @@ const TopRatedGameList = () => {
                         alt="Game Image"
                         className="object-cover h-40 w-32 rounded-md"
                       />
-                      {/* TODO: Add Hover effect to see rating */}
-                      <span className="absolute bottom-0 flex justify-center font-bold text-xs text-white bg-black bg-opacity-50 px-2 py-2 w-full rounded-b-md">
-                        {game.name}
-                      </span>
+                      <div className="absolute bottom-0 w-full bg-black bg-opacity-50 px-2 py-1 rounded-b-md">
+                        <p className="font-bold text-xs text-white h-6 flex items-center">
+                          {game.name}
+                        </p>
+                        <div className="flex font-bold text-md text-white">
+                          <FaStar className=" text-primary text-md mr-1" />
+                          <span>{game.average_rating.toFixed(1)} </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </li>
