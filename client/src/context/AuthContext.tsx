@@ -18,8 +18,16 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     return storedTokens ? jwtDecode(JSON.parse(storedTokens).access) : null;
   });
 
+  const logout = () => {
+    setAuthTokens(null);
+    setUser(null);
+    localStorage.removeItem("authTokens");
+  };
+
   return (
-    <AuthContext.Provider value={{ authTokens, setAuthTokens, user, setUser }}>
+    <AuthContext.Provider
+      value={{ authTokens, setAuthTokens, user, setUser, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

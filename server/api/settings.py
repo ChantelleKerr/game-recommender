@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'api.game',
     'api.rating',
+    'rest_framework_simplejwt.token_blacklist',
     
 ]
 

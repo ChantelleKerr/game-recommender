@@ -21,25 +21,34 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+    let isMounted = true;
+
     const fetchGames = async () => {
-      if (!user) navigate("/login");
+      if (isMounted) {
+        const allGamesData = await GameService.getGames();
+        const recommendedGamesData = await GameService.getRecommendedGames(
+          user.user_id
+        );
+        const ratedGamesData = await RatingService.getRatings(user.user_id);
 
-      const allGamesData = await GameService.getGames();
-      const recommendedGamesData = await GameService.getRecommendedGames(
-        user.user_id
-      );
-      const ratedGamesData = await RatingService.getRatings(user.user_id);
+        setGames(allGamesData);
+        setRecommendedGames(recommendedGamesData);
+        setRatedGames(ratedGamesData);
 
-      setGames(allGamesData);
-      setRecommendedGames(recommendedGamesData);
-      setRatedGames(ratedGamesData);
-
-      const randomGameIndex = Math.floor(Math.random() * allGamesData.length);
-      setFeatured(allGamesData[randomGameIndex]);
+        const randomGameIndex = Math.floor(Math.random() * allGamesData.length);
+        setFeatured(allGamesData[randomGameIndex]);
+      }
       setLoading(false);
     };
     fetchGames();
-  }, []);
+    return () => {
+      isMounted = false;
+    };
+  }, [user]);
   return (
     <>
       {!loading && (

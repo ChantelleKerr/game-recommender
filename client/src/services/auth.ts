@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import axiosWithoutInterceptor, { axiosInstance } from "./axiosInterceptor";
 import { User } from "types";
+import { AuthContext } from "context/AuthContext";
 
 class AuthService {
   async login(credentials: User) {
@@ -10,8 +11,11 @@ class AuthService {
   signup(userData: any) {
     return axiosWithoutInterceptor.post("/user/register/", userData);
   }
-  signout() {
-    console.log("Logout");
+  async signout(logout: () => void, authTokens: any) {
+    const res = await axiosInstance.post("/logout/", {
+      refresh_token: authTokens.refresh,
+    });
+    if (res.status == 200) logout();
   }
 }
 

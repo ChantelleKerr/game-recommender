@@ -40,6 +40,7 @@ interface AuthContextProps {
   setAuthTokens: Dispatch<
     SetStateAction<{ refresh: string; access: string } | null>
   >;
+  logout: () => void;
 }
 
 export type {

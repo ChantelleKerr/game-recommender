@@ -4,13 +4,14 @@ import RatingsPage from "pages/RatingsPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "components/Signup";
 import HomePage from "pages/HomePage";
-import { AuthProvider } from "context/AuthContext";
+import { AuthContext, AuthProvider } from "context/AuthContext";
+import { useContext } from "react";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
-        <NavBar />
+        <UserNavBar />
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/ratings" element={<RatingsPage />}></Route>
@@ -21,5 +22,10 @@ function App() {
     </Router>
   );
 }
+
+const UserNavBar = () => {
+  const { authTokens } = useContext<any>(AuthContext);
+  return authTokens ? <NavBar /> : null;
+};
 
 export default App;
