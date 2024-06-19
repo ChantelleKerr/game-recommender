@@ -1,11 +1,11 @@
-import GameList from "../components/Game/GameList";
-import GameService from "../services/game";
-import RatingService from "../services/rating";
+import GameList from "components/Game/GameList";
+import GameService from "services/game";
+import RatingService from "services/rating";
 import { useContext, useEffect, useState } from "react";
 import { Game, Rating } from "types";
 import { AuthContext } from "context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import FeaturedGame from "../components/FeaturedGame";
+import FeaturedGame from "components/FeaturedGame";
 import TopRatedGameList from "components/Game/TopRated/TopRatedGameList";
 
 const Home = () => {

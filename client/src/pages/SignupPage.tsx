@@ -1,7 +1,7 @@
 import "index.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Input, Button } from "antd";
-import AuthService from "../services/auth";
+import AuthService from "services/auth";
 import { User } from "types";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "context/AuthContext";

@@ -2,7 +2,6 @@ import GameGenres from "components/Game/GameGenres";
 import GamePlatformIcon from "components/Game/GamePlatformIcon";
 import { FaTrash } from "react-icons/fa";
 import { Rating } from "types";
-import RatingService from "../../services/rating";
 
 const RatingCard = ({
   rating,

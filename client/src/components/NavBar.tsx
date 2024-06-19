@@ -3,7 +3,7 @@ import { FaUserCog, FaSearch } from "react-icons/fa";
 import { SlGameController } from "react-icons/sl";
 import { Link, useMatch } from "react-router-dom";
 import { Menu, Dropdown } from "antd";
-import AuthService from "../services/auth";
+import AuthService from "services/auth";
 import { AuthContext } from "context/AuthContext";
 import "styles/styles.css";
 
