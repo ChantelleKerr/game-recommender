@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import React, { createContext, useState, ReactNode } from "react";
-import { AuthContextProps } from "types";
+import { AuthContextProps, AuthTokens } from "types";
 
 const AuthContext = createContext<AuthContextProps | null>(null);
 
@@ -24,9 +24,15 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.removeItem("authTokens");
   };
 
+  const login = (tokenData: AuthTokens) => {
+    setAuthTokens(tokenData);
+    localStorage.setItem("authTokens", JSON.stringify(tokenData));
+    setUser(jwtDecode(tokenData.access));
+  };
+
   return (
     <AuthContext.Provider
-      value={{ authTokens, setAuthTokens, user, setUser, logout }}
+      value={{ authTokens, setAuthTokens, user, setUser, logout, login }}
     >
       {children}
     </AuthContext.Provider>

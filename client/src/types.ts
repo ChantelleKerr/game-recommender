@@ -34,6 +34,11 @@ interface Rating {
   platform: string;
 }
 
+interface AuthTokens {
+  refresh: string;
+  access: string;
+}
+
 interface AuthContextProps {
   authTokens: { refresh: string; access: string } | null;
   user: any | null;
@@ -42,6 +47,7 @@ interface AuthContextProps {
     SetStateAction<{ refresh: string; access: string } | null>
   >;
   logout: () => void;
+  login: (tokenData: AuthTokens) => void;
 }
 
 export type {
@@ -52,4 +58,5 @@ export type {
   User,
   Rating,
   AuthContextProps,
+  AuthTokens,
 };

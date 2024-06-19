@@ -4,12 +4,11 @@ import AuthService from "../services/auth";
 import { useContext, useEffect, useState } from "react";
 import { User } from "types";
 import { Input, Button } from "antd";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "context/AuthContext";
 
 const LoginPage = () => {
-  const { setAuthTokens, setUser, authTokens } = useContext<any>(AuthContext);
+  const { user, login } = useContext<any>(AuthContext);
   const [userForm, setUserForm] = useState<User>({
     username: "",
     password: "",
@@ -18,10 +17,10 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (authTokens) {
+    if (user) {
       navigate("/");
     }
-  }, [authTokens, history]);
+  }, [user]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,15 +30,9 @@ const LoginPage = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    const res = await AuthService.login(userForm);
-    let data = res.data;
-    setAuthTokens(data);
-    localStorage.setItem("authTokens", JSON.stringify(data));
-    setUser(jwtDecode(data.access));
-
+    AuthService.login(userForm, login);
     setUserForm({ username: "", password: "" });
   };
 

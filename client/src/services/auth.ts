@@ -1,11 +1,18 @@
 import { useContext } from "react";
 import axiosWithoutInterceptor, { axiosInstance } from "./axiosInterceptor";
-import { User } from "types";
+import { User, AuthTokens } from "types";
 import { AuthContext } from "context/AuthContext";
 
 class AuthService {
-  async login(credentials: User) {
-    return axiosWithoutInterceptor.post("/token/", credentials);
+  async login(userFormData: User, login: (tokenData: AuthTokens) => void) {
+    const response = await axiosWithoutInterceptor.post(
+      "/token/",
+      userFormData
+    );
+
+    if (response.status == 200) {
+      login(response.data);
+    }
   }
 
   signup(userData: any) {
