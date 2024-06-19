@@ -1,7 +1,13 @@
 import { Rating } from "types";
 import RatingCard from "./RatingCard";
 
-const RatingList = ({ ratings }: { ratings: Rating[] }) => {
+const RatingList = ({
+  ratings,
+  onDeleteRating,
+}: {
+  ratings: Rating[];
+  onDeleteRating: (ratingId: number) => void;
+}) => {
   return (
     <div className="flex flex-col justify-center mt-8 mx-4">
       <h1 className="text-lg text-secondary">My Rated Games</h1>
@@ -10,7 +16,7 @@ const RatingList = ({ ratings }: { ratings: Rating[] }) => {
         {ratings &&
           ratings.map((rating, index) => (
             <li key={index} className="flex justify-center">
-              <RatingCard rating={rating} />
+              <RatingCard rating={rating} onDelete={onDeleteRating} />
             </li>
           ))}
       </ul>

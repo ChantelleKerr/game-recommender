@@ -21,8 +21,18 @@ const RatingsPage = () => {
     };
     fetchRatings();
   }, []);
+
+  const handleDeleteRating = async (ratingId: number) => {
+    await RatingService.deleteRating(ratingId);
+    setRatings(ratings?.filter((rating) => rating.id !== ratingId));
+  };
+
   return (
-    <div className="pt-10">{ratings && <RatingList ratings={ratings} />}</div>
+    <div className="pt-10">
+      {ratings && (
+        <RatingList ratings={ratings} onDeleteRating={handleDeleteRating} />
+      )}
+    </div>
   );
 };
 

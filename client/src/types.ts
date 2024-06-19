@@ -27,6 +27,7 @@ interface User {
 }
 
 interface Rating {
+  id: number;
   user: number | null;
   game: number | Game;
   rating: number;

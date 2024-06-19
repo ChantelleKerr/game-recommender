@@ -12,6 +12,10 @@ class RatingService {
     const response = await axiosInstance.get(`/${endpoint}/get/` + user_id);
     return response.data;
   }
+
+  async deleteRating(id: number) {
+    const response = await axiosInstance.delete(`/${endpoint}/delete/` + id);
+  }
 }
 
 export default new RatingService();
