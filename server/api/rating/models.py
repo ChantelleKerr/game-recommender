@@ -4,6 +4,7 @@ from django.db import models
 
 
 class Rating(models.Model):
+  id = models.AutoField(primary_key=True)
   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   game = models.ForeignKey(Game, on_delete=models.CASCADE)
   rating = models.DecimalField(null=False, max_digits=2, decimal_places=1)

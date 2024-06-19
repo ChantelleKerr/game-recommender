@@ -27,3 +27,11 @@ def get_ratings(request, id):
     print(ratings)
     serialiser = RatingSerialiser(ratings, many=True)
     return Response(serialiser.data, status=200)
+
+
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def delete_rating(request, id):
+    rating = Rating.objects.get(pk=id)
+    rating.delete()
+    return Response({"message": "Rating deleted successfully"}, status=204)
