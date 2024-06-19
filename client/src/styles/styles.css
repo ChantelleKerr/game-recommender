@@ -1,9 +1,10 @@
-.nav-gradient {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, transparent);
-}
-
 .nav-solid {
   background: #141414;
+  transition: 0.5s ease-in;
+}
+
+.nav-gradient {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, transparent);
 }
 .gradient-side {
   position: absolute;
@@ -31,9 +32,8 @@
 .explore-all {
   opacity: 0;
   transform: translateX(-25%);
-  color: theme("colors.secondary");
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out,
-    color 0.7s ease-in-out;
+  color: theme("colors.primary");
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   padding-top: 0.6rem;
   padding-left: 0.75rem;
   font-size: 0.75rem;
@@ -42,7 +42,6 @@
 .group:hover .explore-all {
   opacity: 1;
   transform: translateX(0);
-  color: theme("colors.primary");
 }
 
 .ant-select-selector {
