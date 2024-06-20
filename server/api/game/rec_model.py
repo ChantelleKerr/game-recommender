@@ -22,7 +22,7 @@ def get_user_recommendation(user):
                 recommendations[rating.game] += similarity
 
     sorted_recommendations = sorted(recommendations.items(), key=lambda x: x[1], reverse=True)
-    top_recommendations = sorted_recommendations[:5]
+    top_recommendations = sorted_recommendations
     print(top_recommendations)
     return [game for game, _ in top_recommendations]
 

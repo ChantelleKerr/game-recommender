@@ -36,7 +36,7 @@ const Home = () => {
         const ratedGamesData = await RatingService.getRatings(user.user_id);
 
         setGames(allGamesData);
-        setRecommendedGames(recommendedGamesData);
+        setRecommendedGames(recommendedGamesData.slice(0, 10));
         setRatedGames(ratedGamesData);
 
         const randomGameIndex = Math.floor(Math.random() * allGamesData.length);
