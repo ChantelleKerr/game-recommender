@@ -12,7 +12,7 @@ const NavBar = () => {
     Home: "/",
     Browse: "/browse",
     Rated: "/ratings",
-    Recommendations: "/reat",
+    Recommendations: "/recommend",
   };
   const [visible, setVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);

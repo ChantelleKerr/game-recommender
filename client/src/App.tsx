@@ -7,6 +7,7 @@ import HomePage from "pages/HomePage";
 import BrowsePage from "pages/BrowsePage";
 import { AuthContext, AuthProvider } from "context/AuthContext";
 import { useContext } from "react";
+import RecommendedPage from "pages/RecommendedPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/browse" element={<BrowsePage />} />
           <Route path="/ratings" element={<RatingsPage />} />
+          <Route path="/recommend" element={<RecommendedPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Routes>
