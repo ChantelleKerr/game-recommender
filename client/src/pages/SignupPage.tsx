@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "context/AuthContext";
 
 const SignupPage = () => {
-  const { authTokens } = useContext<any>(AuthContext);
+  const { user } = useContext<any>(AuthContext);
   const [userForm, setUserForm] = useState<User>({
     username: "",
     email: "",
@@ -17,10 +17,10 @@ const SignupPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (authTokens) {
+    if (user) {
       navigate("/");
     }
-  }, [authTokens, history]);
+  }, [user]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,10 +30,9 @@ const SignupPage = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    const res = await AuthService.signup(userForm);
+    AuthService.signup(userForm);
     navigate("/login");
   };
 

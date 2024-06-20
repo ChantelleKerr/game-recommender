@@ -1,25 +1,24 @@
 import { useContext } from "react";
 import axiosWithoutInterceptor, { axiosInstance } from "./axiosInterceptor";
 import { User, AuthTokens } from "types";
-import { AuthContext } from "context/AuthContext";
 
 class AuthService {
   async login(userFormData: User, login: (tokenData: AuthTokens) => void) {
-    const response = await axiosWithoutInterceptor.post(
-      "/token/",
+    const res = await axiosWithoutInterceptor.post(
+      "/auth/token/",
       userFormData
     );
 
-    if (response.status == 200) {
-      login(response.data);
+    if (res.status == 200) {
+      login(res.data);
     }
   }
 
-  signup(userData: any) {
-    return axiosWithoutInterceptor.post("/user/register/", userData);
+  async signup(userData: User) {
+    const res = await axiosWithoutInterceptor.post("/auth/register/", userData);
   }
-  async signout(logout: () => void, authTokens: any) {
-    const res = await axiosInstance.post("/logout/", {
+  async signout(logout: () => void, authTokens: AuthTokens) {
+    const res = await axiosInstance.post("/auth/logout/", {
       refresh_token: authTokens.refresh,
     });
     if (res.status == 200) logout();

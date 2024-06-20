@@ -29,10 +29,16 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.setItem("authTokens", JSON.stringify(tokenData));
     setUser(jwtDecode(tokenData.access));
   };
-
   return (
     <AuthContext.Provider
-      value={{ authTokens, setAuthTokens, user, setUser, logout, login }}
+      value={{
+        authTokens,
+        setAuthTokens,
+        user,
+        setUser,
+        logout,
+        login,
+      }}
     >
       {children}
     </AuthContext.Provider>
