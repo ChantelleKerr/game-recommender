@@ -4,6 +4,7 @@ import RatingsPage from "pages/RatingsPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignupPage from "pages/SignupPage";
 import HomePage from "pages/HomePage";
+import BrowsePage from "pages/BrowsePage";
 import { AuthContext, AuthProvider } from "context/AuthContext";
 import { useContext } from "react";
 
@@ -13,10 +14,11 @@ function App() {
       <AuthProvider>
         <UserNavBar />
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/ratings" element={<RatingsPage />}></Route>
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/signup" element={<SignupPage />}></Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/browse" element={<BrowsePage />} />
+          <Route path="/ratings" element={<RatingsPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </AuthProvider>
     </Router>
