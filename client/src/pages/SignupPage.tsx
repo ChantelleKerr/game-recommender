@@ -81,7 +81,7 @@ const SignupPage = () => {
         <Button
           htmlType="submit"
           type="primary"
-          className="btn bg-primary text-darkBlue my-8"
+          className="btn bg-primary text-secondary my-8"
         >
           Sign up
         </Button>

@@ -65,7 +65,7 @@ const LoginPage = () => {
         <Button
           htmlType="submit"
           type="primary"
-          className="bg-primary text-darkBlue my-8"
+          className="bg-primary text-secondary my-8"
         >
           Sign in
         </Button>
