@@ -50,7 +50,7 @@ const LoginPage = () => {
             placeholder="Username"
             name="username"
             onChange={handleChange}
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs bg-black/10 text-secondary border-secondary/70 placeholder-secondary"
           />
         </div>
         <div>
@@ -59,7 +59,7 @@ const LoginPage = () => {
             placeholder="Password"
             name="password"
             onChange={handleChange}
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs bg-black/10 text-secondary border-secondary/70 placeholder-secondary"
           />
         </div>
         <Button
@@ -70,8 +70,8 @@ const LoginPage = () => {
           Sign in
         </Button>
         <span className="text-gray-500 my-8">
-          Don't have an account yet?{" "}
-          <Link className="text-secondary" to="/signup">
+          Don't have an account yet?
+          <Link className="text-secondary pl-2" to="/signup">
             Sign up now
           </Link>
           .

@@ -50,7 +50,7 @@ const SignupPage = () => {
             placeholder="Username"
             name="username"
             onChange={handleChange}
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs bg-black/10 text-secondary border-secondary/70 placeholder-secondary"
           />
         </div>
         <div className="mb-4">
@@ -59,7 +59,7 @@ const SignupPage = () => {
             placeholder="Email"
             name="email"
             onChange={handleChange}
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs bg-black/10 text-secondary border-secondary/70 placeholder-secondary"
           />
         </div>
         <div className="mb-4">
@@ -68,14 +68,14 @@ const SignupPage = () => {
             name="password"
             onChange={handleChange}
             placeholder="Password"
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs bg-black/10 text-secondary border-secondary/70 placeholder-secondary"
           />
         </div>
         <div className="mb-4">
           <Input
             type="password"
             placeholder="Confirm Password"
-            className="input input-bordered w-full max-w-xs"
+            className="input w-full max-w-xs bg-black/10 text-secondary border-secondary/70 placeholder-secondary"
           />
         </div>
         <Button
@@ -86,8 +86,8 @@ const SignupPage = () => {
           Sign up
         </Button>
         <span className="text-gray-500 my-8 text-md">
-          Already have an account?{" "}
-          <Link to="/login" className="text-secondary">
+          Already have an account?
+          <Link to="/login" className="text-secondary pl-2">
             Sign in here
           </Link>
           .
