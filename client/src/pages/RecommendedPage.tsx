@@ -5,8 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import { Game, Rating } from "types";
 import { AuthContext } from "context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import FeaturedGame from "components/FeaturedGame";
-import TopRatedGameList from "components/Game/TopRated/TopRatedGameList";
 
 const RecommendedPage = () => {
   const { user } = useContext<any>(AuthContext);
