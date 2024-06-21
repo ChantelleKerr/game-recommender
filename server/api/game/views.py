@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Game
-from .rec_model import get_user_recommendation
+from .rec_model import get_user_games_recommendations
 from .serialiser import GameSerialiser, TopRatedGameSerializer
 
 
@@ -23,7 +23,7 @@ def get_games(request):
 def get_recommendation(request, id):
     try:
         user = User.objects.get(id=id)
-        recommendations = get_user_recommendation(user)
+        recommendations = get_user_games_recommendations(user)
         serializer = GameSerialiser(recommendations, many=True)
         return Response(serializer.data, status=200)
     except User.DoesNotExist:
