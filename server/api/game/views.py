@@ -11,15 +11,15 @@ from .serialiser import GameSerialiser, TopRatedGameSerializer
 
 
 @api_view(["GET"])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def get_games(request):
     games = Game.objects.all()
     serialiser = GameSerialiser(games, many=True)
     return Response(serialiser.data, status=200)
 
 
-@api_view(["POST"])
-@permission_classes([AllowAny])
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
 def get_recommendation(request, id):
     try:
         user = User.objects.get(id=id)

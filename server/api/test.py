@@ -1,10 +1,12 @@
 from api.game.models import Game, Genre, Platform
 from api.rating.models import Rating
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import Client
+from django.urls import reverse
+from rest_framework.test import APITestCase
 
 
-class BaseTestCase(TestCase):
+class BaseTestCase(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.create_genres()
@@ -12,7 +14,8 @@ class BaseTestCase(TestCase):
         cls.create_games()
         cls.create_users()
         cls.create_ratings()
-
+        cls.token = cls.get_token()
+    
     @classmethod
     def create_genres(cls):
         cls.genres = {
@@ -85,11 +88,23 @@ class BaseTestCase(TestCase):
     @classmethod
     def create_users(cls):
         cls.users = {
-            'UserA': User.objects.create_user(username='UserA', password='password123'),
-            'UserB': User.objects.create_user(username='UserB', password='password123'),
-            'UserC': User.objects.create_user(username='UserC', password='password123'),
+            'UserA': User.objects.create_user(id=1, username='UserA', password='password123'),
+            'UserB': User.objects.create_user(id=2, username='UserB', password='password123'),
+            'UserC': User.objects.create_user(id=3, username='UserC', password='password123'),
         }
     
+    @classmethod
+    def get_token(cls):
+        token_url = '/api/auth/token/'
+        body = {
+            'username': 'UserA',
+            'password': 'password123'
+        }
+        response = Client().post(token_url, body, format='json')
+
+        return response.data['access']
+    
+
     @classmethod
     def create_ratings(cls):
         ratings_data = {

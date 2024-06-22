@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 
 def get_user_games_recommendations(user):
     user_ratings = Rating.objects.filter(user=user)
+    
+    if len(user_ratings) == 0:
+        return []
+    
     all_users = User.objects.exclude(pk=user.pk)
 
     recommendations = get_game_recommendation_scores(user, user_ratings, all_users)
@@ -30,7 +34,6 @@ def get_game_recommendation_scores(user, user_ratings, all_users):
                 if rating.game not in recommendations:
                     recommendations.setdefault(rating.game, 0)
                 recommendations[rating.game] += float(similarity)
-
     return recommendations
 
 def calculate_cosine_similarity(ratings_user, ratings_other):
