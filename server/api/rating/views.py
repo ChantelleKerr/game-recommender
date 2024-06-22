@@ -24,7 +24,6 @@ def add_rating(request):
 @permission_classes([IsAuthenticated])
 def get_ratings(request, id):
     ratings = Rating.objects.filter(user=id)
-    print(ratings)
     serialiser = RatingSerialiser(ratings, many=True)
     return Response(serialiser.data, status=200)
 
