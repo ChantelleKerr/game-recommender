@@ -1,0 +1,26 @@
+services:
+  db:
+    container_name: game-rec-db
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    env_file: .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+  server:
+    container_name: game-rec-server
+    build:
+      context: .
+      dockerfile: ./docker/server/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 8000:8000
+    volumes:
+      - ./server:/app
+    depends_on:
+      - db
