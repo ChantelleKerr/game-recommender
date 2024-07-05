@@ -24,3 +24,13 @@ services:
       - ./server:/app
     depends_on:
       - db
+  docs:
+    container_name: game-rec-docs
+    build:
+      context: .
+      dockerfile: docker/docs/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8001:8001
+    volumes:
+      - ./documentation:/documentation
