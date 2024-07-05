@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
 import GameCard from "./GameCard";
 import { Game, Rating } from "types";
 import { Link } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
+import { useLocation } from "react-router-dom";
 
 interface GameListProps {
   games: Game[];
@@ -11,7 +11,9 @@ interface GameListProps {
 }
 
 const GameList = ({ games, title, ratedGames }: GameListProps) => {
+  const location = useLocation();
   const checkGameId = new Set(ratedGames.map((rating) => rating.game.id));
+  let linkTo = title === "Browse Games" ? "browse" : "recommend";
 
   const getNoGamesAvailableText = () => {
     if (title === "Recommended Games") {
@@ -19,15 +21,22 @@ const GameList = ({ games, title, ratedGames }: GameListProps) => {
     }
     return "There are no games available!";
   };
+
+  const displayExploreAll = () => {
+    if (location.pathname == "/") return true;
+    return false;
+  };
+
   return (
     <div className="container mx-auto px-2 sm:px-4 lg:px-6 relative">
-      <Link to="/recommended" className="flex group">
+      <Link to={`/${linkTo}`} className="flex group">
         <h1 className="text-lg text-secondary"> {title} </h1>
-
-        <span className="explore-all flex">
-          Explore all
-          <FaAngleRight className="ml-1 text-primary" />
-        </span>
+        {displayExploreAll() && (
+          <span className="explore-all flex">
+            Explore all
+            <FaAngleRight className="ml-1 text-primary" />
+          </span>
+        )}
       </Link>
 
       {games && games.length === 0 ? (
