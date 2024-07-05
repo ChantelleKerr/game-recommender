@@ -10,7 +10,7 @@ API_KEY = os.environ.get('RAWG_API_KEY')
 PAGE = 1
 URL = f'{RAWG_URL}{API_KEY}&page={PAGE}'
 
-ALLOWED_PLATFORMS = ['Playstation', 'Xbox', 'Nintendo', 'PC', 'Mobile']
+ALLOWED_PLATFORMS = ['PlayStation', 'Xbox', 'Nintendo', 'PC', 'Mobile']
 
 games = []
 genres = []
@@ -67,7 +67,7 @@ def extract_game_data(game_results):
     for platform in game['parent_platforms']:
       platform_name = platform['platform']['name']
       if platform_name in ALLOWED_PLATFORMS:
-         id = ALLOWED_PLATFORMS.index(platform_name)
+         id = ALLOWED_PLATFORMS.index(platform_name) + 1
          current_game['fields']['platforms'].append(id)
     
     # We dont want to add a game for a platform that we don't allow
