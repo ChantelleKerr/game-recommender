@@ -6,3 +6,4 @@ nav:
   - Recommendation Algorithm: recommend.md
   - Database Models: models.md
   - API Endpoints: endpoints.md
+  - RAWG Game API: rawg-api.md
