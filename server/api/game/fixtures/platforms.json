@@ -1,0 +1,32 @@
+[
+  {
+    "model": "game.platform",
+    "fields": {
+      "name": "Playstation"
+    }
+  },
+  {
+    "model": "game.platform",
+    "fields": {
+      "name": "Xbox"
+    }
+  },
+  {
+    "model": "game.platform",
+    "fields": {
+      "name": "Nintendo"
+    }
+  },
+  {
+    "model": "game.platform",
+    "fields": {
+      "name": "PC"
+    }
+  },
+  {
+    "model": "game.platform",
+    "fields": {
+      "name": "Mobile"
+    }
+  }
+]

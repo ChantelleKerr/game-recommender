@@ -10,28 +10,32 @@ do
   sleep 1
 done
 
->&2 echo "Postgres is up - continuing"
+echo "█████████████████████ POSTGRES IS READY █████████████████████"
 
-echo "Applying database migrations"
+echo "█████████████████████ APPLYING DB MIGRATIONS █████████████████████"
 python manage.py migrate --noinput
 
 # echo "Collecting static files"
 # python manage.py collectstatic --noinput
 
 # Create Django Superuser
-echo "Creating Django Superuser"
+echo "█████████████████████ CREATING DJANGO SUPERUSER █████████████████████"
 python manage.py createsuperuser --noinput
 
 # Run inbuilt Django server if ENV is development
 if [ "${APP_ENV^^}" = "DEVELOPMENT" ]; then
 
+    
     # Install extra non-prod packages
-    printf "\n" && echo "Installing dev dependencies for $APP_ENV"
+    printf "\n" && echo "█████████████████████ Installing dev dependencies for $APP_ENV █████████████████████"
     poetry install
 
-    # Run developments
+    echo "█████████████████████ PRELOADING DATA OBJECTS █████████████████████"
+    python manage.py preload_data
+    echo "░░░░░░░░░░░░░░░░░░░░░ PRELOADING DATA OBJECTS COMPLETE ░░░░░░░░░░░░░░░░░░░░░"
+
+    printf "\n" && echo "█████████████████████ ATTEMPTING TO RUN DJANGO SERVER █████████████████████"
     printf "\n" && echo "Starting inbuilt django webserver"
-    echo "Running: python manage.py runserver"
     python manage.py runserver 0.0.0.0:8000
     exit
 fi
