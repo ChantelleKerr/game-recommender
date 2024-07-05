@@ -65,6 +65,8 @@ Similarity between User A and User C:
 
 ### Positive Rating Filtering
 
+A game is considered positively rated if it has been rated a 3 or above.
+
 - User B has rated Game 1, Game 3, and Game 4 positively.
 - User C has rated Game 2 and Game 5 positively.
 
