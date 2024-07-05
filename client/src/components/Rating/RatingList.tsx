@@ -11,15 +11,19 @@ const RatingList = ({
   return (
     <div className="flex flex-col justify-center mt-8 mx-4">
       <h1 className="text-lg text-secondary">My Rated Games</h1>
-
-      <ul className="grid gap-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xl:grid-cols-4">
-        {ratings &&
-          ratings.map((rating, index) => (
+      {ratings.length === 0 ? (
+        <p className="text-secondary/60 text-center">
+          You have no game ratings!
+        </p>
+      ) : (
+        <ul className="grid gap-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xl:grid-cols-4">
+          {ratings.map((rating, index) => (
             <li key={index} className="flex justify-center">
               <RatingCard rating={rating} onDelete={onDeleteRating} />
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 };
