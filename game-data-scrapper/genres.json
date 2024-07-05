@@ -1,0 +1,50 @@
+[
+    {
+        "model": "game.genre",
+        "fields": {
+            "name": "Action"
+        }
+    },
+    {
+        "model": "game.genre",
+        "fields": {
+            "name": "RPG"
+        }
+    },
+    {
+        "model": "game.genre",
+        "fields": {
+            "name": "Shooter"
+        }
+    },
+    {
+        "model": "game.genre",
+        "fields": {
+            "name": "Puzzle"
+        }
+    },
+    {
+        "model": "game.genre",
+        "fields": {
+            "name": "Fighting"
+        }
+    },
+    {
+        "model": "game.genre",
+        "fields": {
+            "name": "Adventure"
+        }
+    },
+    {
+        "model": "game.genre",
+        "fields": {
+            "name": "Indie"
+        }
+    },
+    {
+        "model": "game.genre",
+        "fields": {
+            "name": "Platformer"
+        }
+    }
+]
