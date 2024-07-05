@@ -4,3 +4,5 @@ theme:
 nav:
   - Overview: index.md
   - Recommendation Algorithm: recommend.md
+  - Database Models: models.md
+  - API Endpoints: endpoints.md
