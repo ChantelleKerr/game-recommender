@@ -8,7 +8,7 @@ For more information on the API please visit: <a href="https://rawg.io/apidocs">
 
 Under the `game-data-scrapper` folder. A program (get_games.py) is used to make a GET request to the API for a given page. Each page contains information of 20 games.
 
-The purpose of this programe is to extract relevant information into a JSON format that can be loaded into Django when starting the docker container. This can be done by copying the generated files into `server/api/game/fixtures/` folder.
+The purpose of this programe is to extract relevant information into a JSON format that can be loaded into Django when starting the docker container. This can be done by copying the generated files into `server/fixture_data/fixtures/` folder.
 
 ### Generated JSON files
 

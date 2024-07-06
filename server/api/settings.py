@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'api.game',
     'api.rating',
     'rest_framework_simplejwt.token_blacklist',
+    'fixture_data'
     
 ]
 

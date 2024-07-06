@@ -1,0 +1,26 @@
+[
+  {
+    "model": "auth.user",
+    "fields": {
+      "username": "Fred",
+      "password": "pbkdf2_sha256$600000$s22Rg9fSs0lXXxaf5AkZEc$tzthy1XA7EgiNXL+IIajz7Jn424ygIhn+pyiGM4rzAM=",
+      "email": "fred@fred.com"
+    }
+  },
+  {
+    "model": "auth.user",
+    "fields": {
+      "username": "Zyra",
+      "password": "pbkdf2_sha256$600000$s22Rg9fSs0lXXxaf5AkZEc$tzthy1XA7EgiNXL+IIajz7Jn424ygIhn+pyiGM4rzAM=",
+      "email": "zyra@zyra.com"
+    }
+  },
+  {
+    "model": "auth.user",
+    "fields": {
+      "username": "Linx",
+      "password": "pbkdf2_sha256$600000$s22Rg9fSs0lXXxaf5AkZEc$tzthy1XA7EgiNXL+IIajz7Jn424ygIhn+pyiGM4rzAM=",
+      "email": "linx@linx.com"
+    }
+  }
+]

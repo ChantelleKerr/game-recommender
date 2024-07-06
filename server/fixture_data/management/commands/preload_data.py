@@ -1,6 +1,5 @@
-# server/api/management/commands/preload_data.py
-
-from api.game.models import Platform, Genre, Game
+from api.game.models import Game, Genre, Platform
+from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
@@ -29,3 +28,10 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS('Game Data Preloaded Successfully'))
         else:
             self.stdout.write(self.style.SUCCESS('Game Data already exists. Skipping preload.'))
+
+        if User.objects.count() <= 1:
+            self.stdout.write(self.style.SUCCESS('Preloading User Data...'))
+            call_command('loaddata', 'users.json')
+            self.stdout.write(self.style.SUCCESS('User Data Preloaded Successfully'))
+        else:
+            self.stdout.write(self.style.SUCCESS('User Data already exists. Skipping preload.'))
