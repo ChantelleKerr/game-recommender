@@ -29,7 +29,7 @@ interface User {
 interface Rating {
   id?: number;
   user: User;
-  game: Game;
+  game: number | Game;
   rating: number;
   platform: string;
 }

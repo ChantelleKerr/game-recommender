@@ -15,7 +15,7 @@ const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
 
   const initialValue: Rating = {
     user: user.user_id,
-    game: game,
+    game: game.id,
     rating: 0,
     platform: "",
   };

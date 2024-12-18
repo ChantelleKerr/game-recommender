@@ -7,12 +7,12 @@ from .models import Game, Genre, Platform
 class GenreSerializer(ModelSerializer):
     class Meta:
         model = Genre
-        fields = ['name']
+        fields =  '__all__'
 
 class PlatformSerializer(ModelSerializer):
     class Meta:
         model = Platform
-        fields = ['name']
+        fields = '__all__'
 
 class GameSerialiser(ModelSerializer):
     platforms = PlatformSerializer(many=True)

@@ -1,4 +1,4 @@
-from api.game.models import Game
+from api.game.models import Game, Platform
 from api.test import BaseTestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -20,21 +20,13 @@ class RatingAuthenticatedRequestsTest(BaseTestCase):
 
   def test_add_rating(self):
     url = reverse('add-rating')
-    user = User.objects.first()
-    game = Game.objects.first()
-    
-    game_dict = {
-      'id': game.id,
-      'name': game.name,
-      'image': game.image,
-      'genres': [{'name': genre.name} for genre in game.genres.all()],
-      'platforms': [{'name': platform.name} for platform in game.platforms.all()]
-    }
-
+    user = User.objects.first().id
+    game = Game.objects.first().id
+   
     body = {
-        'user': user.id,
-        'game': game_dict,
-        'platform': 'Xbox',
+        'user': user,
+        'game': game,
+        'platform': "Playstation",
         'rating': 3
     }
 
