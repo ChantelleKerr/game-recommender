@@ -1,0 +1,110 @@
+[
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 2,
+      "game": 1,
+      "rating": 5,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 2,
+      "game": 2,
+      "rating": 3,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 2,
+      "game": 3,
+      "rating": 4,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 3,
+      "game": 1,
+      "rating": 4,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 3,
+      "game": 3,
+      "rating": 5,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 3,
+      "game": 4,
+      "rating": 4,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 3,
+      "game": 5,
+      "rating": 3,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 4,
+      "game": 1,
+      "rating": 2,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 4,
+      "game": 2,
+      "rating": 5,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 4,
+      "game": 3,
+      "rating": 3,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 4,
+      "game": 4,
+      "rating": 2,
+      "platform": 1
+    }
+  },
+  {
+    "model": "rating.rating",
+    "fields": {
+      "user": 4,
+      "game": 5,
+      "rating": 4,
+      "platform": 1
+    }
+  }
+]

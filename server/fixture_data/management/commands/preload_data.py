@@ -1,4 +1,5 @@
 from api.game.models import Game, Genre, Platform
+from api.rating.models import Rating
 from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
@@ -35,3 +36,10 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS('User Data Preloaded Successfully'))
         else:
             self.stdout.write(self.style.SUCCESS('User Data already exists. Skipping preload.'))
+
+        if not Rating.objects.exists():
+            self.stdout.write(self.style.SUCCESS('Preloading Rating Data...'))
+            call_command('loaddata', 'ratings.json')
+            self.stdout.write(self.style.SUCCESS('Rating Data Preloaded Successfully'))
+        else:
+            self.stdout.write(self.style.SUCCESS('Rating Data already exists. Skipping preload.'))
