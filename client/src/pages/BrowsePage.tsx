@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { Game, Rating } from "types";
 import { AuthContext } from "context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import FilterBar from "components/FilterBar";
 
 const BrowsePage = () => {
   const { user } = useContext<any>(AuthContext);
@@ -39,6 +40,7 @@ const BrowsePage = () => {
   }, [user]);
   return (
     <div className="pt-24">
+      <FilterBar />
       {!loading && (
         <GameList games={games} title="Browse Games" ratedGames={ratedGames} />
       )}
