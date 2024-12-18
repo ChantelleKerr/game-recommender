@@ -37,7 +37,7 @@ Cosine similarity is used to measure the similarity between two users' ratings v
 ## Recommendation Generation
 
 1. **Similarity Calculation:** For each user other than the target user, compute the cosine similarity score.
-2. **Positive Ratings Filtering:** Identify games that the other user rated positively, where rating is greater than 3.
+2. **Positive Ratings Filtering:** Identify games that the other user rated positively, where the rating is 3 or above.
 3. **Recommendation Accumulation:** Accumlate similarity score for thats that the target user has not rated.
 4. **Sorting and Selection:** Sort the games by accumulated similarity scores and select the top n recommendations.
 
