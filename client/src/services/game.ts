@@ -10,7 +10,7 @@ class GameService {
   }
 
   async getRecommendedGames(user_id: number) {
-    const response = await axiosWithoutInterceptor.post(
+    const response = await axiosWithoutInterceptor.get(
       `/${endpoint}/get_recommendation/` + user_id
     );
     return response.data;
