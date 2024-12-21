@@ -9,7 +9,7 @@ import useNotification from "hooks/notifications";
 
 const SignupPage = () => {
   const { user } = useContext<any>(AuthContext);
-  const { notifySuccess } = useNotification();
+  const { notifySuccess, notifyError } = useNotification();
   const [userForm, setUserForm] = useState<User>({
     username: "",
     email: "",
@@ -32,14 +32,22 @@ const SignupPage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    AuthService.signup(userForm);
-    navigate("/login");
-    notifySuccess({
-      message: "Success",
-      description: "You successfully signed up, please log in!",
-    });
+    const response = await AuthService.signup(userForm);
+    console.log(response.message);
+    if (response.success) {
+      navigate("/login");
+      notifySuccess({
+        message: "Success",
+        description: "You successfully signed up, please log in!",
+      });
+    } else {
+      notifyError({
+        message: "Error",
+        description: response.message || "An Error osccurred with signup",
+      });
+    }
   };
 
   return (

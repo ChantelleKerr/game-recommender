@@ -6,6 +6,7 @@ import { User } from "types";
 import { Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "context/AuthContext";
+import useNotification from "hooks/notifications";
 
 const LoginPage = () => {
   const { user, login } = useContext<any>(AuthContext);
@@ -13,6 +14,7 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
+  const { notifySuccess, notifyError } = useNotification();
 
   const navigate = useNavigate();
 
@@ -30,10 +32,21 @@ const LoginPage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    AuthService.login(userForm, login);
-    setUserForm({ username: "", password: "" });
+    const response = await AuthService.login(userForm, login);
+    if (response.success) {
+      setUserForm({ username: "", password: "" });
+      notifySuccess({
+        message: "Success",
+        description: "Successfully logged in",
+      });
+    } else {
+      notifyError({
+        message: "Error",
+        description: response.message || "An unexcepted error occurred",
+      });
+    }
   };
 
   return (
