@@ -118,3 +118,15 @@
     1px -1px 0 theme("colors.secondary"), -1px 1px 0 theme("colors.secondary"),
     1px 1px 0 theme("colors.secondary");
 }
+
+.notification {
+  background-color: theme("colors.darkGray");
+}
+
+.ant-notification-notice-message {
+  color: theme("colors.secondary") !important;
+}
+
+.ant-notification-notice-description {
+  color: theme("colors.secondary") !important;
+}

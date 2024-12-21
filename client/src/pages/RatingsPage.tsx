@@ -4,11 +4,13 @@ import RatingService from "services/rating";
 import { AuthContext } from "context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import RatingList from "components/Rating/RatingList";
+import useNotification from "hooks/notifications";
 
 const RatingsPage = () => {
   const [ratings, setRatings] = useState<Rating[]>();
   const [loading, setLoading] = useState<boolean>(true);
   const { user } = useContext<any>(AuthContext);
+  const { notifySuccess } = useNotification();
 
   const navigate = useNavigate();
 
@@ -25,6 +27,10 @@ const RatingsPage = () => {
   const handleDeleteRating = async (ratingId: number) => {
     await RatingService.deleteRating(ratingId);
     setRatings(ratings?.filter((rating) => rating.id !== ratingId));
+    notifySuccess({
+      message: "Success",
+      description: "You successfully deleted your rating!",
+    });
   };
 
   return (

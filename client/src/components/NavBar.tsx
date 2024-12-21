@@ -7,6 +7,8 @@ import AuthService from "services/auth";
 import { AuthContext } from "context/AuthContext";
 import "styles/styles.css";
 
+import useNotification from "hooks/notifications";
+
 const NavBar = () => {
   const links = {
     Home: "/",
@@ -17,10 +19,15 @@ const NavBar = () => {
   const [visible, setVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   let { authTokens, logout } = useContext<any>(AuthContext);
+  const { notifySuccess } = useNotification();
 
   const handleMenuClick = async (e: any) => {
     if (e.key === "signout") {
       await AuthService.signout(logout, authTokens);
+      notifySuccess({
+        message: "Success",
+        description: "You successfully logged out!",
+      });
     } else if (e.key === "profile") {
     }
     setVisible(false);

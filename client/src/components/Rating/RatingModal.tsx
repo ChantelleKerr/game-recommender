@@ -4,6 +4,7 @@ import { Game, Genre, Platform, Rating } from "types";
 import { Rate, Select, Button, Form, Spin } from "antd";
 import { AuthContext } from "context/AuthContext";
 import RatingService from "services/rating";
+import useNotification from "hooks/notifications";
 
 type Props = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,6 +13,7 @@ type Props = {
 };
 const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
   let { user } = useContext<any>(AuthContext);
+  const { notifySuccess } = useNotification();
 
   const initialValue: Rating = {
     user: user.user_id,
@@ -38,6 +40,10 @@ const RatingModal = ({ setIsModalOpen, setHasRated, game }: Props) => {
     setHasRated(true);
     setLoading(false);
     setIsModalOpen(false);
+    notifySuccess({
+      message: "Success",
+      description: "You successfully added a new rating!",
+    });
   };
 
   const handleChangeRate = (value: number) => {

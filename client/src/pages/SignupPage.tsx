@@ -5,9 +5,11 @@ import AuthService from "services/auth";
 import { User } from "types";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "context/AuthContext";
+import useNotification from "hooks/notifications";
 
 const SignupPage = () => {
   const { user } = useContext<any>(AuthContext);
+  const { notifySuccess } = useNotification();
   const [userForm, setUserForm] = useState<User>({
     username: "",
     email: "",
@@ -34,6 +36,10 @@ const SignupPage = () => {
     e.preventDefault();
     AuthService.signup(userForm);
     navigate("/login");
+    notifySuccess({
+      message: "Success",
+      description: "You successfully signed up, please log in!",
+    });
   };
 
   return (
